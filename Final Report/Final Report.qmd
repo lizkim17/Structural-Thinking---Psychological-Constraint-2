@@ -1,19 +1,18 @@
 ---
-title: "My Title"
-shorttitle: "Short Title in Running Header"
+title: "Empowering Girls in STEM: The Role of Female Representation in Shaping Children's Structural Reasoning About Gender Disparities"
+shorttitle: "GENDER REPRESENTATION IN STEM"
 author:
-  - name: Jane Doe
+  - name: Liz Kim
     corresponding: true
-    orcid: 0000-0000-0000-0001
-    email: janedoe@generic.edu
+    email: lizkim@uchicago.edu
     affiliations:
-      - name: Generic University
-        department: Department of Scholarly Studies
-        address: 1234 Capital St.
-        city: New York
-        region: NY
+      - name: University of Chicago
+        department: Department of Psychology
+        address: 5848 S University Ave
+        city: Chicago
+        region: IL
         country: USA
-        postal-code: 12084-1234
+        postal-code: 60637
 author-note:
   status-changes: 
     affiliation-change: ~
@@ -26,23 +25,34 @@ author-note:
     financial-support: ~
     gratitude: ~
     authorship-agreements: ~
-abstract: "This document is a template."
-keywords: [keyword1, keyword2, keyword3]
+abstract: "Gender bias in STEM educational materials remains a significant barrier to gender equity, with textbooks and online resources often underrepresenting female scientists. This study investigates how exposure to female representation in STEM textbooks influences children’s structural reasoning about gender disparities in STEM achievement. 96 children aged 5–8 were assigned to one of three conditions    Findings show that    ."
+keywords: [Gender Bias in STEM, Structural Reasoning, Educational Materials]
 bibliography: bibliography.bib
 format:
   apaquarto-docx: default
   apaquarto-html: default
-  apaquarto-pdf:
+  apaquarto-pdf: 
     documentmode: man
 ---
+# Introduction
+
+Gender bias in STEM often hides in plain sight, subtly embedded in textbooks and classroom materials. Women are significantly underrepresented in school textbooks, particularly in professional STEM contexts (Crawfurd et al., 2024; Kerkhoven et al., 2016). An analysis of over 1,200 textbooks from 34 countries found that female figures appear less frequently in STEM contexts, reinforcing traditional gender roles and shaping students' perceptions of who is suited for science fields (Crawfurd et al., 2024). Similarly, online science education materials tend to portray male characters as more engaged in STEM activities, reinforcing the association of STEM with masculinity (Kerkhoven et al., 2016). When girls consistently see male scientists, mathematicians, and engineers conveyed as the primary figures of success, they receive an implicit message about who “belongs” in these fields, which can discourage them from envisioning themselves as future STEM professionals (Master, 2021). Thus, balanced gender representation in educational materials is important, as biased portrayals can dissuade girls from pursuing STEM by influencing their beliefs about their abilities and potential in these fields.
+
+How does exposure to structural information, such as the gender of scientists in STEM textbooks, impact children's structural reasoning about gender-based disparities in STEM achievement? We hypothesize that exposure to structural information demonstrating that the gender of scientists in STEM textbooks influences girls’ achievement in STEM activities will increase children’s likelihood of attributing gender disparities in STEM achievement to structural factors. Grounded in social identity and stereotype threat theories, such exposure helps children view gender disparities as societal barriers rather than personal limitations, reducing stereotype threat and fostering belonging (Master, 2021; Kim et al., 2018). 
 
 # Method
 
 ## Participants
 
-## Measures
+The study will recruit 96 girls aged 5–8 from a university infant database. This sample size and age range were chosen based on a prior study, which investigated children’s structural reasoning and demonstrated that structural reasoning begins developing around age 5 (Amemiya & Bian, 2024).
 
 ## Procedure
+
+Participants will be tested via Zoom, using Qualtrics surveys. Each participant will receive a $5 Amazon gift card as compensation.
+
+Children will be presented with two hypothetical scenarios involving competitions in a fictional town: a robot-building competition and a puzzle-solving competition. First, children will be randomly assigned to one of three conditions in the robot-building scenario: baseline, within, or between conditions. In all conditions, participants will be told that children in the scenario read a textbook on robot building and participate in a robot-building competition spanning four hypothetical years. In the baseline condition, the textbook will not feature any specific scientists, and boys will win the competition in all years. In the within condition, the textbook will feature female scientists for the first two years and male scientists for the last two years, with winners' genders corresponding to the gender of the scientists. In the between condition, the textbook will feature male scientists across all four years, with boys winning each year. A condition featuring only female scientists will not be included because, in all conditions, children will be asked to reason why girls are underrepresented in STEM activities, requiring at least one year where boys win. This design also reflects reality, as most scientists children hear about are male. The goal is to test whether children can identify this lack of female scientists as a structural barrier for girls. Then, the puzzle-solving competition, included as a baseline condition, will be presented to children to assess whether they can generalize their structural reasoning to another context or not.
+
+After each scenario, open-ended questions will prompt them to explain why no girls won in the last year, and closed-ended questions will ask them to evaluate intrinsic, random, and structural explanations provided by fictional characters as accurate or inaccurate. 
 
 # Results
 

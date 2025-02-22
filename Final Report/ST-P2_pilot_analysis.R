@@ -1,12 +1,14 @@
-install.packages("car")          # Companion to Applied Regression
-install.packages("boot")         # Bootstrap functions
-install.packages("ggplot2")      # Data visualization
-install.packages("lme4")         # Linear mixed-effects models
-install.packages("RColorBrewer") # Color palettes
-install.packages("tidyverse")    # Collection of data science packages
-install.packages("effectsize")   # Effect sizes and standardized parameters
-install.packages("rcompanion", dependencies = TRUE)   # Functions for statistical analysis
-install.packages("nlme")   
+install.packages("car")       
+install.packages("boot") 
+install.packages("ggplot2")   
+install.packages("lme4")        
+install.packages("RColorBrewer")
+install.packages("tidyverse")    
+install.packages("effectsize") 
+install.packages("multcomp")
+install.packages("rcompanion", dependencies = TRUE)   
+install.packages("nlme")  
+
 
 library(car)
 library(boot)
@@ -18,6 +20,7 @@ library(effectsize)
 library(rcompanion)
 library(nlme)
 brewer.pal(n=9,"Pastel1")
+library("Hmisc")
 
 #between subject design; referring to format of instructions (between condition-comparing between two groups boys vs girs)(within condition - all girls)
 
@@ -32,19 +35,22 @@ table(data$Condition, data$puzzle_OE_cat)
 #creating dataframe for the plot
 
 #change the number according the the number of explanation types
-Condition <- c(rep("Baseline" , 4) , rep("Between" , 4) , rep("Within" , 4))
-Explanation_Type <- rep(c("Intrinsic", "Structural", "Extrinsic", "Other") , 3)
+Condition <- c(rep("Baseline" , 5) , rep("Between" , 5) , rep("Within" , 5)) 
+# 3 refers to 3 conditions
+Explanation_Type <- rep(c("Intrinsic", "Structural", "Extrinsic", "Other", "Structural+Intrinsic") , 3)
 #review the numbers later
-value <- c(4/6,0,1/6,1/6,2/4,1/4,0,1/4,2/6,4/6,0,0)
+value <- c(9/11,0,1/11,1/11,0,6/11,0,0,2/11,2/11,4/15,10/15,1/15,0,0)
 table <- data.frame(Condition,Explanation_Type)
-table$Explanation_Type<- with(table, factor(Explanation_Type, levels=c("Intrinsic","Structural","Extrinsic","Other")))
+table$Explanation_Type<- with(table, factor(Explanation_Type, levels=c("Intrinsic","Structural","Extrinsic","Other","Structural+Intrinsic")))
 
 ggplot(table, aes(fill=Explanation_Type, y=value, x=Condition)) + 
   geom_bar(position="fill", stat="identity", aes(fill=Explanation_Type))+
   labs(y="Percent of Children Gave Explanation", x="Condition")+
   scale_fill_manual(values = c("Intrinsic" = "#FBB4AE",
                                "Structural"="#1F78B4",
-                               "Other"="#F2F2F2"))+
+                               "Other"="#F2F2F2",
+                               "Extrinsic"= "purple",
+                               "Structural+Intrinsic"="red"))+
   theme_bw()
 
 #puzzle
@@ -66,6 +72,7 @@ ggplot(table, aes(fill=Explanation_Type, y=value, x=Condition)) +
 #think about how we can help children generalize it to another scenario (discussion section)
 
 #### Figures for Explanation Ratings
+#exchanging really right into a number 
 data$robot_ability <-replace(data$robot_ability, data$robot_ability_r == "Really right", 4)
 data$robot_ability <-replace(data$robot_ability, data$robot_ability_r == "A little right", 3)
 data$robot_ability <-replace(data$robot_ability, data$robot_ability_nr == "A little not right", 2)
@@ -117,6 +124,7 @@ df.1.ratings = reshape(data, direction = "long", idvar = "ID",
 df.1.ratings$explanation <- factor(df.1.ratings$explanation, levels = c("Structural", "Intrinsic-ability", "Intrinsic-interest", "Random"))
 
 # ggplot
+#intrinsic explanations decrease in within condition as well. 
 ggplot(df.1.ratings, aes(x = Condition, y = rating, group = explanation, fill = explanation)) +
   # means
   geom_bar(stat = "summary", position = "dodge", color = "black") +

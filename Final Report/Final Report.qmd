@@ -57,19 +57,7 @@ After each scenario, open-ended questions will prompt them to explain why no gir
 # Results
 
 ```{r}
-# Install and Load packages
-
-install.packages("car")       
-install.packages("boot") 
-install.packages("ggplot2")   
-install.packages("lme4")        
-install.packages("RColorBrewer")
-install.packages("tidyverse")    
-install.packages("effectsize") 
-install.packages("multcomp")
-install.packages("rcompanion", dependencies = TRUE)   
-install.packages("nlme")  
-
+# Load packages
 
 library(car)
 library(boot)
@@ -94,18 +82,16 @@ data <- read.csv("ST-P 2 Dataset use this!!!.csv")
 table(data$Condition, data$robot_OE_cat)
 table(data$Condition, data$puzzle_OE_cat)
 ```
-
+## Robot Building Open-ended Questions
 ```{r}
-#Robot Building
-#change the number according the the number of explanation types
 Condition <- c(rep("Baseline" , 5) , rep("Between" , 5) , rep("Within" , 5)) 
-# 3 refers to 3 conditions
 Explanation_Type <- rep(c("Intrinsic", "Structural", "Extrinsic", "Other", "Structural+Intrinsic") , 3)
-#review the numbers later
+
 value <- c(9/11,0,1/11,1/11,0,6/11,0,0,2/11,2/11,4/15,10/15,1/15,0,0)
 table <- data.frame(Condition,Explanation_Type)
 table$Explanation_Type<- with(table, factor(Explanation_Type, levels=c("Intrinsic","Structural","Extrinsic","Other","Structural+Intrinsic")))
 
+#Bar graph
 ggplot(table, aes(fill=Explanation_Type, y=value, x=Condition)) + 
   geom_bar(position="fill", stat="identity", aes(fill=Explanation_Type))+
   labs(y="Percent of Children Gave Explanation", x="Condition")+
@@ -119,14 +105,16 @@ ggplot(table, aes(fill=Explanation_Type, y=value, x=Condition)) +
 ```
 
 ```{r}
-#Puzzle-Solving
+#Puzzle Solving Open-ended Questions
+
 Condition <- c(rep("Baseline" , 4) , rep("Between" , 4) , rep("Within" , 4))
 Explanation_Type <- rep(c("Intrinsic", "Structural", "Extrinsic", "Other") , 3)
-#review the numbers later
+
 value <- c(5/6,1/6,0,0,3/4,0,0,1/4,3/6,1/6,1/6,1/6)
 table <- data.frame(Condition,Explanation_Type)
 table$Explanation_Type<- with(table, factor(Explanation_Type, levels=c("Intrinsic","Structural","Extrinsic","Other")))
 
+#Bar graph
 ggplot(table, aes(fill=Explanation_Type, y=value, x=Condition)) + 
   geom_bar(position="fill", stat="identity", aes(fill=Explanation_Type))+
   labs(y="Percent of Children Gave Explanation", x="Condition")+
@@ -136,12 +124,11 @@ ggplot(table, aes(fill=Explanation_Type, y=value, x=Condition)) +
                                "Other"="#F2F2F2"))+
   theme_bw()
 ```
-think about how we can help children generalize it to another scenario (discussion section)
+
 
 #Closed-ended Questions
 ```{r}
-#### Figures for Explanation Ratings
-#exchanging really right into a number 
+# Exchanging categories into numbers: Robot Building
 data$robot_ability <-replace(data$robot_ability, data$robot_ability_r == "Really right", 4)
 data$robot_ability <-replace(data$robot_ability, data$robot_ability_r == "A little right", 3)
 data$robot_ability <-replace(data$robot_ability, data$robot_ability_nr == "A little not right", 2)
@@ -162,6 +149,7 @@ data$robot_control <-replace(data$robot_control, data$robot_control_r == "A litt
 data$robot_control <-replace(data$robot_control, data$robot_control_nr == "A little not right", 2)
 data$robot_control <-replace(data$robot_control, data$robot_control_nr == "Really not right", 1)
 
+# Puzzle solving
 data$puzzle_ability <-replace(data$puzzle_ability, data$puzzle_ability_r == "Really right", 4)
 data$puzzle_ability <-replace(data$puzzle_ability, data$puzzle_ability_r == "A little right", 3)
 data$puzzle_ability <-replace(data$puzzle_ability, data$puzzle_ability_nr == "A little not right", 2)
@@ -184,7 +172,7 @@ data$puzzle_control <-replace(data$puzzle_control, data$puzzle_control_nr == "Re
 ```
 
 ```{r}
-#Robot-building
+#Robot Building open-ended questions
 
 df.1.ratings = reshape(data, direction = "long", idvar = "ID",
                        varying = list(c('robot_structural', 'robot_ability', 'robot_interest', 'robot_control')),
@@ -192,35 +180,27 @@ df.1.ratings = reshape(data, direction = "long", idvar = "ID",
                        timevar = "explanation", times = c("Structural", "Intrinsic-ability", "Intrinsic-interest", "Random"))
 df.1.ratings$explanation <- factor(df.1.ratings$explanation, levels = c("Structural", "Intrinsic-ability", "Intrinsic-interest", "Random"))
 
-# ggplot
-#intrinsic explanations decrease in within condition as well. 
+# Bar graph
 ggplot(df.1.ratings, aes(x = Condition, y = rating, group = explanation, fill = explanation)) +
-  # means
   geom_bar(stat = "summary", position = "dodge", color = "black") +
-  # color of bars
   scale_fill_manual(values=c("#1F78B4","#FBB4AE","#fbaecf","snow3")) +
-  # error bars
   stat_summary(fun.data="mean_cl_normal", 
                fun.args = list(mult=1), 
                geom ="errorbar", 
                width = .2,
                position = position_dodge(width = .9)) +
-  # raw data
-  geom_point(aes(x = Condition, y = rating, group = explanation), 
+# raw data
+geom_point(aes(x = Condition, y = rating, group = explanation), 
              shape = 21,
              alpha = .8, 
              position = position_jitterdodge(jitter.width = 0.2, 
                                              jitter.height=0.1, 
                                              dodge.width=0.9),
              color = "white") +
-  # y-axis
   coord_cartesian(ylim = c(1, 4)) +
   xlab("Condition") +
   ylab("Rating of Explanation") +
-  # legend title
   guides(fill=guide_legend(title="Explanation")) +
-  # plot title
-  # theme
   theme_bw() + 
   theme(plot.title = element_text(hjust = 0.5, size = 20, face = "bold"),
         axis.title = element_text(size = 18),
@@ -240,20 +220,17 @@ df.2.ratings = reshape(data, direction = "long", idvar = "ID",
                          timevar = "explanation", times = c("Structural", "Intrinsic-ability", "Intrinsic-interest", "Random"))
 df.2.ratings$explanation <- factor(df.1.ratings$explanation, levels = c("Structural", "Intrinsic-ability", "Intrinsic-interest", "Random"))
   
-  # RATINGS PLOT
-  # ggplot
+
+# Bar graph
 ggplot(df.2.ratings, aes(x = Condition, y = rating, group = explanation, fill = explanation)) +
-    # means
     geom_bar(stat = "summary", position = "dodge", color = "black") +
-    # color of bars
     scale_fill_manual(values=c("#1F78B4","#FBB4AE","#fbaecf","snow3")) +
-    # error bars
     stat_summary(fun.data="mean_cl_normal", 
                  fun.args = list(mult=1), 
                  geom ="errorbar", 
                  width = .2,
                  position = position_dodge(width = .9)) +
-    # raw data
+# raw data
     geom_point(aes(x = Condition, y = rating, group = explanation), 
                shape = 21,
                alpha = .8, 
@@ -261,14 +238,10 @@ ggplot(df.2.ratings, aes(x = Condition, y = rating, group = explanation, fill = 
                                                jitter.height=0.1, 
                                                dodge.width=0.9),
                color = "white") +
-    # y-axis
     coord_cartesian(ylim = c(1, 4)) +
     xlab("Condition") +
     ylab("Rating of Explanation") +
-    # legend title
     guides(fill=guide_legend(title="Explanation")) +
-    # plot title
-    # theme
     theme_bw() + 
     theme(plot.title = element_text(hjust = 0.5, size = 20, face = "bold"),
           axis.title = element_text(size = 18),
@@ -281,6 +254,8 @@ ggplot(df.2.ratings, aes(x = Condition, y = rating, group = explanation, fill = 
 
 
 # Discussion
+
+think about how we can help children generalize it to another scenario (discussion section)
 
 ## Limitations and Future Directions
 

@@ -1,1 +1,5 @@
-# Structural-Thinking---Psychological-Constraint-2
+Purpose
+Data use
+Research questions
+
+Structure with file tree or similar

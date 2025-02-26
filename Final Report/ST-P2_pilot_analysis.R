@@ -113,7 +113,6 @@ data$puzzle_control <-replace(data$puzzle_control, data$puzzle_control_r == "A l
 data$puzzle_control <-replace(data$puzzle_control, data$puzzle_control_nr == "A little not right", 2)
 data$puzzle_control <-replace(data$puzzle_control, data$puzzle_control_nr == "Really not right", 1)
 
-#figure out rcompanion installation & error bars
 # maybe we have high structural ratings bc intuitively it makes sense even without the stimuli, the structural explanation
 
 #robot

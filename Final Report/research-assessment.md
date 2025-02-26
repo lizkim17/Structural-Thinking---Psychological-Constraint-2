@@ -205,7 +205,7 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
 
     2.  Uses `stringr` functions in a data transformation pipeline
 
-        -   [ ] Objective attempt
+        -   [x] Objective attempt
         -   [ ] Objective met
         -   Grader comments:
 
@@ -216,7 +216,7 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
 
     -   NOTE: Though they are base R functions, `factor()` and `levels()` can be used to meet this objective as long as they are used in a way that demonstrates the same skills as `forcats` functions, which should involve including optional arguments
 
-        -   [ ] Objective attempt
+        -   [x] Objective attempt
         -   [ ] Objective met
         -   Grader comments:
 

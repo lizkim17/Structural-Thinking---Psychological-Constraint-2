@@ -249,7 +249,7 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
     5.  If data only includes 1 sensible grouping variable, it may be used for both the faceting and groupin aes.
 
     ```         
-    -   [ ] Objective attempt
+    -   [v] Objective attempt
     -   [ ] Objective met
     -   Grader comments:
     ```
@@ -318,7 +318,7 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
 
     3.  May use `cite_r()` to cite R and R packages
 
-        -   [x] Objective attempt
+        -   [ ] Objective attempt
         -   [ ] Objective met
         -   Grader comments:
 
@@ -334,7 +334,7 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
 
     5.  May include references not cited in-text
 
-        -   [x] Objective attempt
+        -   [ ] Objective attempt
         -   [ ] Objective met
         -   Grader comments:
 

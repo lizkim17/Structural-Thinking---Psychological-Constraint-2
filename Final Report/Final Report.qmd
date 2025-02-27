@@ -100,6 +100,26 @@ categorical_summary <- data %>%
 print(numeric_summary)
 print(categorical_summary)
 ```
+
+## Using facets for LO:15
+
+```{r}
+# Histogram : facet_wrap
+ggplot(data, aes(x = AgeYears)) +
+  geom_histogram(binwidth = 1, fill = "lightblue", color = "black") +
+  facet_wrap(~ Condition, scales = "free") +
+  theme_minimal() +
+  labs(title = "Age Distribution by Condition", x = "Age (Years)", y = "Count")
+
+# Histogram : facet grid 
+ggplot(data, aes(x = AgeYears)) +
+  geom_histogram(binwidth = 1, fill = "lightblue", color = "black") +
+  facet_grid(Condition ~ Gender, scales = "free") +  
+  theme_minimal() +
+  labs(title = "Age Distribution by Condition and Gender", x = "Age (Years)", y = "Count")
+
+```
+
 ## Using str() for LO:11
 
 ```{r}
@@ -122,29 +142,8 @@ print(data_summary)
 chisq.test(data$Condition, data$robot_OE_cat)
 chisq.test(data$Condition, data$puzzle_OE_cat)
 ```
-to check if Condition (Baseline, Between, Within) is associated with robot_OE_cat and puzzle_OE_cat.
+The test for Condition and robot_OE_cat revealed a significant association, χ²(10) = 31.93, p = 0.00041, indicating that participants' responses in the robot open-ended category varied significantly across conditions. In contrast, the chi-square test for Condition and puzzle_OE_cat did not yield significant results, χ²(8) = 8.07, p = 0.4264, suggesting that responses in the puzzle open-ended category were not significantly different across conditions. 
 
-```{r}
-data$robot.open.struc = 0
-data$robot.open.struc[data$robot_OE_cat == "structural"] = 1
-
-data$robot.open.intrnsc = 0
-data$robot.open.intrnsc[data$robot_OE_cat == "intrinsic"] = 1
-
-data$robot.open.other = 0
-data$robot.open.other[data$robot_OE_cat == "other"] = 1
-
-logistic.struc <- glm(robot.open.struc ~ Condition*AgeYears*Gender, data = data, family = "binomial") 
-summary(logistic.struc)
-```
-To check whether different conditions, age, or gender influence the likelihood of providing a structural explanation.
-
-```{r}
-# Odds Ratio Calculations
-exp(logistic.struc$coefficients['ConditionBetween'])
-exp(logistic.struc$coefficients['ConditionWithin'])
-```
-The odds ratio tells us how much more or less likely children in Between and Within conditions are to give structural explanations, compared to Baseline.
 
 ```{r}
 # Figures for Open-Ended Explanations Measure
@@ -218,7 +217,6 @@ ggplot(table, aes(fill=Explanation_Type, y=value, x=Condition)) +
   theme_bw()
 ```
 
-
 #Closed-ended Questions
 
 ```{r}
@@ -266,6 +264,29 @@ data$puzzle_control <-replace(data$puzzle_control, data$puzzle_control_nr == "Re
 ```
 
 ## Close-ended Questions
+
+```{r}
+
+data$robot_structural <- as.numeric(as.character(data$robot_structural))
+
+# Baseline vs. Between
+t_test_baseline_between <- t.test(robot_structural ~ Condition, 
+                                  data = data %>% 
+                                         filter(Condition %in% c("Baseline", "Between")) %>%
+                                         drop_na(robot_structural), 
+                                  var.equal = TRUE)
+print(t_test_baseline_between)
+
+# Baseline vs. Within
+t_test_baseline_within <- t.test(robot_structural ~ Condition, 
+                                 data = data %>%
+                                   filter(Condition %in% c("Baseline", "Within")) %>%
+                                   drop_na(robot_structural), 
+                                 var.equal = TRUE)
+print(t_test_baseline_within)
+
+```
+A two-sample t-test was conducted to compare robot structural ratings between the Baseline and Between conditions. The results indicated no statistically significant difference between the two groups, t(42) = -0.08, p = .939, 95% CI [-0.68, 0.63]. A two-sample t-test was conducted to compare robot structural ratings between the Baseline and Within conditions. The results indicated that there was no statistically significant difference between the two groups, t(43) = -1.32, p = .195, 95% CI [-1.04, 0.22]. These findings suggest that Condition did not have a meaningful effect on robot structural ratings.
 
 ```{r}
 #Robot Building close-ended questions

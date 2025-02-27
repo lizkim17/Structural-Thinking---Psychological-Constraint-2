@@ -30,7 +30,7 @@ Section: 1
 
 Research project title: Empowering Girls in STEM: The Role of Female Representation in Shaping Children's Structural Reasoning About Gender Disparities
 
-Submission date: 3/26
+Submission date: 2/26
 
 Submission number (1-4): 1
 

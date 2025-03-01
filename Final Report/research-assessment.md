@@ -318,7 +318,7 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
 
     3.  May use `cite_r()` to cite R and R packages
 
-        -   [ ] Objective attempt
+        -   [x] Objective attempt
         -   [ ] Objective met
         -   Grader comments:
 
@@ -334,7 +334,7 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
 
     5.  May include references not cited in-text
 
-        -   [ ] Objective attempt
+        -   [x] Objective attempt
         -   [ ] Objective met
         -   Grader comments:
 

@@ -37,21 +37,21 @@ format:
 
 # Introduction
 
-##Gender Bias in STEM Educational Materials
+## Gender Bias in STEM Educational Materials
 
 Gender bias in STEM often hides in plain sight, subtly embedded in textbooks and classroom materials. Women are significantly underrepresented in school textbooks, particularly in professional STEM contexts [@crawfurdetal_2024_sexist; @kerkhovenetal_2016_gender]. An analysis of over 1,200 textbooks from 34 countries found that female figures appear less frequently in STEM contexts, reinforcing traditional gender roles and shaping students' perceptions of who is suited for science fields [@crawfurdetal_2024_sexist]. Similarly, online science education materials tend to portray male characters as more engaged in STEM activities, reinforcing the association of STEM with masculinity [@kerkhovenetal_2016_gender]. When girls consistently see male scientists, mathematicians, and engineers conveyed as the primary figures of success, they receive an implicit message about who “belongs” in these fields, which can discourage them from envisioning themselves as future STEM professionals [@master_2021_gender]. Thus, balanced gender representation in educational materials is important, as biased portrayals can dissuade girls from pursuing STEM by influencing their beliefs about their abilities and potential in these fields.
 
 How does exposure to structural information, such as the gender of scientists in STEM textbooks, impact children's structural reasoning about gender-based disparities in STEM achievement? We hypothesize that exposure to structural information demonstrating that the gender of scientists in STEM textbooks influences girls’ achievement in STEM activities will increase children’s likelihood of attributing gender disparities in STEM achievement to structural factors. Grounded in social identity and stereotype threat theories, such exposure helps children view gender disparities as societal barriers rather than personal limitations, reducing stereotype threat and fostering belonging [@master_2021_gender; @kimetal_2018_developing].
 
-##Psychological Mechanisms Underlying Gender Stereotypes in STEM
+## Psychological Mechanisms Underlying Gender Stereotypes in STEM
 
 @master_2021_gender explains that stereotype threat occurs when individuals become aware of negative stereotypes about their social group. For example, when girls are reminded of the stereotype that “boys are better at math,” they may experience heightened anxiety and reduced confidence, leading to lower performance. Over time, this repeated experience of underperformance can create a self-fulfilling prophecy, where girls disengage from STEM fields altogether to avoid the stress of confronting stereotypes. Social identity theory further explains how girls’ sense of belonging and self-concept are influenced by group identification. This theory posits that individuals derive a significant part of their identity from the social groups to which they belong [@kimetal_2018_developing]. For girls, strongly identifying with their gender may lead them to internalize the perception that STEM is a “male” domain, particularly when female scientists are absent in educational materials. This lack of female representation reinforces the belief that STEM is not a space where they belong, further discouraging them from participating in STEM activities [@master_2021_gender; @kimetal_2018_developing]. Therefore, female figures in STEM textbooks are crucial; they provide positive examples that challenge gender stereotypes, demonstrating that women can thrive in STEM.
 
-##The Role of Structural Reasoning in Reducing Gender Disparities
+## The Role of Structural Reasoning in Reducing Gender Disparities
 
 Female representation not only inspires girls to consider STEM careers but also helps them understand structural barriers to gender equity, an approach more effective than individual reasoning; individual reasoning often places the burden on girls to overcome obstacles alone, while structural reasoning encourages them to view and address challenges as part of broader societal structures. When girls view gender gaps in STEM as personal limitations, it reinforces stereotypes and lowers self-efficacy; in contrast, structural reasoning reframes these gaps as outcomes of systemic barriers—such as biased educational resources or gender discrimination—that restrict women’s participation in STEM [@amemiyabian_2024_why]. Female figures are pivotal in creating an environment that prevents individual reasoning. The representation can normalize women’s presence in STEM, signaling that success in these fields is not limited to men, reducing stereotype threat [@master_2021_gender]. Also, it can help girls begin to consider systemic factors rather than solely personal shortcomings as explanations for gender disparities [@bredaetal_2023_how]. Additionally, structural reasoning aligns with social identity theory by reinforcing that girls are not inherently excluded from STEM. Instead, they are part of a group facing societal bias, fostering a sense of belonging and empowering them to challenge structural inequities.
 
-##The Impact of Female Representation on STEM Engagement
+## The Impact of Female Representation on STEM Engagement
 
 Exposing girls to female representation in STEM can significantly enhance their motivation to pursue STEM careers and reduce gender biases. Diverse STEM female figures in media and educational settings foster a positive association of women with STEM fields from an early age [@kongetal_2020_reducing]. Moreover, encounters with female scientists can increase girls' STEM aspirations and counteract stereotypes [@bredaetal_2023_how; @master_2021_gender; @gonzalez-perezetal_2020_girls]
 
@@ -72,6 +72,9 @@ After each scenario, open-ended questions will prompt them to explain why no gir
 # Results
 
 ```{r}
+#| include: false
+#| label: Load libaries 
+
 library(devtools)
 library(car)
 library(boot)
@@ -87,6 +90,8 @@ library("Hmisc")
 ```
 
 ```{r}
+#| include: false
+
 # Read the dataset
 data <- read.csv("ST-P 2 Dataset use this!!!.csv")
 ```
@@ -94,6 +99,8 @@ data <- read.csv("ST-P 2 Dataset use this!!!.csv")
 ## Descriptive Statistics
 
 ```{r}
+#| include: false
+
 # Summary statistics for a numeric variable (Age)
 numeric_summary <- data %>%
   summarise(
@@ -109,7 +116,9 @@ numeric_summary <- data %>%
 categorical_summary <- data %>%
   count(Condition) %>%
   mutate(Proportion = n / sum(n) * 100)
+```
 
+```{r}
 # Print results
 print(numeric_summary)
 print(categorical_summary)
@@ -118,6 +127,8 @@ print(categorical_summary)
 ## Using facets for LO:15
 
 ```{r}
+#| include: false
+
 # Histogram : facet_wrap
 ggplot(data, aes(x = AgeYears)) +
   geom_histogram(binwidth = 1, fill = "lightblue", color = "black") +
@@ -137,6 +148,8 @@ ggplot(data, aes(x = AgeYears)) +
 ## Using str() for LO:11
 
 ```{r}
+#| include: false
+
 # Data transformation pipeline with stringr functions
 data_summary <- data %>%
   summarise(
@@ -151,6 +164,8 @@ print(data_summary)
 ## Robot Building Open-ended Questions
 
 ```{r}
+#| include: false
+
 # Chi-Sqaure Tests
 chisq.test(data$Condition, data$robot_OE_cat)
 chisq.test(data$Condition, data$puzzle_OE_cat)
@@ -159,11 +174,15 @@ chisq.test(data$Condition, data$puzzle_OE_cat)
 The test for Condition and robot_OE_cat revealed a significant association, χ²(10) = 31.93, p = 0.00041, indicating that participants' responses in the robot open-ended category varied significantly across conditions. In contrast, the chi-square test for Condition and puzzle_OE_cat did not yield significant results, χ²(8) = 8.07, p = 0.4264, suggesting that responses in the puzzle open-ended category were not significantly different across conditions.
 
 ```{r}
+#| include: false
+
 # Figures for Open-Ended Explanations Measure
 table(data$Condition, data$robot_OE_cat)
 ```
 
 ```{r}
+#| include: false
+
 # Create the Data Frame
 table <- data.frame(
   Condition = rep(c("Baseline", "Between", "Within"), each = 5),
@@ -182,7 +201,9 @@ table <- table %>%
                                   "Other Explanations" = "Other",
                                   "Structural+Intrinsic Explanations" = "Structural+Intrinsic")
   )
+```
 
+```{r}
 # Stacked bar plot
 ggplot(table, aes(fill = Explanation_Type, y = value, x = Condition)) + 
   geom_bar(position = "fill", stat = "identity") +
@@ -199,11 +220,15 @@ ggplot(table, aes(fill = Explanation_Type, y = value, x = Condition)) +
 ## Puzzle Solving Open-ended Questions
 
 ```{r}
+#| include: false
+
 # Figures for Open-Ended Explanations Measure
 table(data$Condition, data$puzzle_OE_cat)
 ```
 
 ```{r}
+#| include: false
+
 #Puzzle Solving Open-ended Questions
 
 # Create the Condition Column
@@ -218,7 +243,9 @@ value <- c(19/24,4/24,1/24,0,0,16/20,1/20,0,2/20,1/20,15/21,3/21,2/21,1/21,0)
 # Create the dataframe
 table <- data.frame(Condition,Explanation_Type)
 table$Explanation_Type<- with(table, factor(Explanation_Type, levels=c("Intrinsic","Structural","Extrinsic","Other")))
+```
 
+```{r}
 #Bar graph
 ggplot(table, aes(fill=Explanation_Type, y=value, x=Condition)) + 
   geom_bar(position="fill", stat="identity", aes(fill=Explanation_Type))+
@@ -233,6 +260,8 @@ ggplot(table, aes(fill=Explanation_Type, y=value, x=Condition)) +
 # Closed-ended Questions
 
 ```{r}
+#| include: false
+
 # Exchanging categories into numbers: Robot Building
 data$robot_ability <-replace(data$robot_ability, data$robot_ability_r == "Really right", 4)
 data$robot_ability <-replace(data$robot_ability, data$robot_ability_r == "A little right", 3)
@@ -277,6 +306,7 @@ data$puzzle_control <-replace(data$puzzle_control, data$puzzle_control_nr == "Re
 ```
 
 ```{r}
+#| include: false
 
 data$robot_structural <- as.numeric(as.character(data$robot_structural))
 
@@ -301,6 +331,8 @@ print(t_test_baseline_within)
 A two-sample t-test was conducted to compare robot structural ratings between the Baseline and Between conditions. The results indicated no statistically significant difference between the two groups, t(42) = -0.08, p = .939, 95% CI \[-0.68, 0.63\]. A two-sample t-test was conducted to compare robot structural ratings between the Baseline and Within conditions. The results indicated that there was no statistically significant difference between the two groups, t(43) = -1.32, p = .195, 95% CI \[-1.04, 0.22\]. These findings suggest that Condition did not have a meaningful effect on robot structural ratings.
 
 ```{r}
+#| include: false
+
 #Robot Building close-ended questions
 
 df.1.ratings = reshape(data, direction = "long", idvar = "ID",
@@ -308,7 +340,9 @@ df.1.ratings = reshape(data, direction = "long", idvar = "ID",
                        v.names = c("rating"),
                        timevar = "explanation", times = c("Structural", "Intrinsic-ability", "Intrinsic-interest", "Random"))
 df.1.ratings$explanation <- factor(df.1.ratings$explanation, levels = c("Structural", "Intrinsic-ability", "Intrinsic-interest", "Random"))
+```
 
+```{r}
 # Bar graph
 ggplot(df.1.ratings, aes(x = Condition, y = rating, group = explanation, fill = explanation)) +
   geom_bar(stat = "summary", position = "dodge", color = "black") +
@@ -341,6 +375,8 @@ geom_point(aes(x = Condition, y = rating, group = explanation),
 ```
 
 ```{r}
+#| include: false
+
 #Puzzle-solving close-ended questions
 
 df.2.ratings = reshape(data, direction = "long", idvar = "ID",
@@ -348,8 +384,9 @@ df.2.ratings = reshape(data, direction = "long", idvar = "ID",
                          v.names = c("rating"),
                          timevar = "explanation", times = c("Structural", "Intrinsic-ability", "Intrinsic-interest", "Random"))
 df.2.ratings$explanation <- factor(df.1.ratings$explanation, levels = c("Structural", "Intrinsic-ability", "Intrinsic-interest", "Random"))
-  
+```
 
+```{r}
 # Bar graph
 ggplot(df.2.ratings, aes(x = Condition, y = rating, group = explanation, fill = explanation)) +
     geom_bar(stat = "summary", position = "dodge", color = "black") +

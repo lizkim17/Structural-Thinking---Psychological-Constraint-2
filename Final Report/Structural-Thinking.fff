@@ -1,0 +1,58 @@
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+
+\caption{\label{fig-robot-plot}Robot Building Open-Ended Explanations:
+Explanation Types by Condition}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{Structural-Thinking_files/figure-pdf/fig-robot-plot-1.pdf}}
+
+}
+
+\end{figure*}
+\efloatseparator
+ 
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+
+\caption{\label{fig-puzzle-plot}Puzzle Solving Open-Ended Explanations:
+Explanation Types by Condition}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{Structural-Thinking_files/figure-pdf/fig-puzzle-plot-1.pdf}}
+
+}
+
+\end{figure*}
+\efloatseparator
+ 
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+[H]
+
+\caption{Robot Building Close-Ended Explanations: Explanation Types by
+Condition}
+
+{\centering \pandocbounded{\includegraphics[keepaspectratio]{Structural-Thinking_files/figure-pdf/Bar-graph-robot-1.pdf}}
+
+}
+
+\end{figure*}
+\efloatseparator
+ 
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+[H]
+
+\caption{Puzzle Solving Close-Ended Explanations: Explanation Types by
+Condition}
+
+{\centering \pandocbounded{\includegraphics[keepaspectratio]{Structural-Thinking_files/figure-pdf/Bar-graph-puzzle-1.pdf}}
+
+}
+
+\end{figure*}

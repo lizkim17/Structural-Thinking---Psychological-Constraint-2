@@ -39,6 +39,10 @@ editor:
 floatsintext: true
 ---
 
+
+
+
+
 # Introduction
 
 ## Gender Bias in STEM Educational Materials
@@ -107,6 +111,10 @@ Then, the puzzle-solving competition, included as a baseline condition, will be 
 After each scenario, open-ended questions will prompt them to explain why no girls won in the last year, and closed-ended questions will ask them to evaluate intrinsic, random, and structural explanations provided by fictional characters as accurate or inaccurate.
 
 # Results
+
+
+
+
 
 ```{r}
 #| label: Set up
@@ -218,7 +226,15 @@ data_operators <- data_operators %>%
 print(data_operators %>% select(AgeYears, Age_Group, Is_Child))
 ```
 
+
+
+
+
 ## Descriptive Statistics
+
+
+
+
 
 ```{r}
 #| label: tbl-Descriptive-Statistics-Numeric
@@ -245,7 +261,15 @@ calculate_numeric_summary <- function(df, column) {
 # Usage in the first context
 calculate_numeric_summary(data, "AgeYears")
 ```
+
+
+
+
 The dataset includes `r nrow(data)` participants, with ages ranging from `r min(data$AgeYears, na.rm = TRUE)` to `r max(data$AgeYears, na.rm = TRUE)` years old. The average age of participants is `r round(mean(data$AgeYears, na.rm = TRUE), 2)`, with a standard deviation of `r round(sd(data$AgeYears, na.rm = TRUE), 2)`. The median age is `r median(data$AgeYears, na.rm = TRUE)`. See @tbl-Descriptive-Statistics-Numeric for a full summary of the data.
+
+
+
+
 
 ```{r}
 #| label: Descriptive Statistics Numeric Example 2
@@ -268,9 +292,17 @@ non_numeric_summary %>%
   flextable::theme_apa()
 ```
 
+
+
+
+
 The dataset includes `r sum(non_numeric_summary$n)` participants. In the Baseline condition, `r non_numeric_summary$n[non_numeric_summary$Condition == "Baseline"]` participants were included, representing `r round(non_numeric_summary$Proportion[non_numeric_summary$Condition == "Baseline"], 2)`% of the sample. In the Between condition, `r non_numeric_summary$n[non_numeric_summary$Condition == "Between"]` participants were included, making up `r round(non_numeric_summary$Proportion[non_numeric_summary$Condition == "Between"], 2)`% of the total sample. Finally, in the Within condition, `r non_numeric_summary$n[non_numeric_summary$Condition == "Within"]` participants were included, comprising `r round(non_numeric_summary$Proportion[non_numeric_summary$Condition == "Within"], 2)`% of the dataset. See @tbl-Descriptive-Statistics-Non-numeric for a full summary of the categorical data.
 
 ## Robot Building Open-ended Questions
+
+
+
+
 
 ```{r}
 #| label: Chi-Sqaure Test for Robot
@@ -280,9 +312,17 @@ The dataset includes `r sum(non_numeric_summary$n)` participants. In the Baselin
 chisq_test_1 <- chisq.test(data$Condition, data$robot_OE_cat)
 print(chisq_test_1)
 ```
+
+
+
+
 The Chi-Square test for condition and open-ended questions for robot building scenario showed a significant association, 
 χ²(`r chisq_test_1$parameter`) = `r round(chisq_test_1$statistic, 2)`, p = `r formatC(chisq_test_1$p.value, format = "e", digits = 2)`, 
 indicating that participants' responses in the robot open-ended category varied significantly across conditions.
+
+
+
+
 
 ```{r}
 #| label: Open Ended Explanations Measure robot
@@ -328,9 +368,17 @@ ggplot(table, aes(fill = Explanation_Type, y = value, x = Condition)) +
 
 ```
 
+
+
+
+
 See @fig-robot-plot
 
 ## Puzzle Solving Open-ended Questions
+
+
+
+
 
 ```{r}
 #| label: Chi-Sqaure Test for Puzzle
@@ -340,9 +388,17 @@ See @fig-robot-plot
 chisq_test_2 <- chisq.test(data$Condition, data$puzzle_OE_cat)
 print(chisq_test_2)
 ```
+
+
+
+
 In contrast, the Chi-Square test for condition and open-ended questions for puzzle solving scenario did not show significant results, 
 χ²(`r chisq_test_2$parameter`) = `r round(chisq_test_2$statistic, 2)`, p = `r round(chisq_test_2$p.value, 4)`, 
 suggesting that responses in the puzzle open-ended category were not significantly different across conditions.
+
+
+
+
 
 ```{r}
 #| label: Open Ended Explanations Measure puzzle
@@ -380,9 +436,17 @@ ggplot(table, aes(fill=Explanation_Type, y=value, x=Condition)) +
   theme_bw()
 ```
 
+
+
+
+
 See @fig-puzzle-plot
 
 ## Robot Building Closed-ended Questions
+
+
+
+
 
 ```{r}
 #| label: Closed ended Questions 
@@ -455,6 +519,10 @@ print(t_test_baseline_within)
 
 ```
 
+
+
+
+
 A two-sample t-test was conducted to compare robot structural ratings between the Baseline and Between conditions.
 The results indicated no statistically significant difference between the two groups, t(`r round(t_test_baseline_between$parameter, 2)`) = `r round(t_test_baseline_between$statistic, 2)`, p = `r round(t_test_baseline_between$p.value, 3)`, 95% CI \[`r round(t_test_baseline_between$conf.int[1], 2)`, `r round(t_test_baseline_between$conf.int[2], 2)`\].
 
@@ -462,6 +530,10 @@ A two-sample t-test was conducted to compare robot structural ratings between th
 The results indicated that there was no statistically significant difference between the two groups, t(`r round(t_test_baseline_within$parameter, 2)`) = `r round(t_test_baseline_within$statistic, 2)`, p = `r round(t_test_baseline_within$p.value, 3)`, 95% CI \[`r round(t_test_baseline_within$conf.int[1], 2)`, `r round(t_test_baseline_within$conf.int[2], 2)`\].
 
 These findings suggest that Condition did not have a meaningful effect on robot structural ratings.
+
+
+
+
 
 ```{r}
 #| label: Robot-Building
@@ -508,9 +580,17 @@ geom_point(aes(x = Condition, y = rating, group = explanation),
 
 ```
 
+
+
+
+
 See @fig-Bar-graph-robot
 
 ## Puzzle Solving Closed-ended Questions
+
+
+
+
 
 ```{r}
 #| label: puzzle-solving
@@ -559,6 +639,10 @@ ggplot(df.2.ratings, aes(x = Condition, y = rating, group = explanation, fill = 
 
 ```
 
+
+
+
+
 See @fig-Bar-graph-puzzle
 
 # Discussion
@@ -572,3 +656,4 @@ By shedding light on how children’s reasoning about these disparities can be i
 
 ::: {#refs}
 :::
+

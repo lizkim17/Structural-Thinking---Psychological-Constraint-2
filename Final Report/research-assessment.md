@@ -149,7 +149,7 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
 
     2.  Uses multiple operators in data transformation pipelines and/or inline R code
 
-        -   [ ] Objective attempt
+        -   [x] Objective attempt
         -   [ ] Objective met
         -   Grader comments:
 
@@ -161,7 +161,7 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
 
     3.  Functions are well-documented with comments
 
-        -   [ ] Objective attempt
+        -   [x] Objective attempt
         -   [ ] Objective met
         -   Grader comments:
 
@@ -171,7 +171,7 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
 
     2.  Uses multiple types of conditional/loop functions (e.g., `if_else()`, `case_when()`, `for`, `while`)
 
-        -   [ ] Objective attempt
+        -   [x] Objective attempt
         -   [ ] Objective met
         -   Grader comments:
 
@@ -429,7 +429,7 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
 
     3.  Ideally, uses inline R references for *all* data-dependent text
 
-        -   [ ] Objective attempt
+        -   [x] Objective attempt
         -   [ ] Objective met
         -   Grader comments:
 
@@ -437,7 +437,7 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
 
     1.  Uses inline R functions to render at least 3 unique data-dependent text outputs (e.g., performs rounding, calculates means, subtracts one list length from another, etc. -- inline rather than in a code chunk)
 
-        -   [ ] Objective attempt
+        -   [x] Objective attempt
         -   [ ] Objective met
         -   Grader comments:
 
@@ -457,22 +457,16 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
 
 ## Reflection (Optional)
 
-Optionally (for engagement points) write a brief reflection about your work on this project. You can use this space to answer the following questions, but feel free to ignore these questions and write about whatever you think is most important.
-
--   What was the most challenging aspect of this project?
--   What was the most rewarding aspect of this project?
--   What would you do differently if you were to start over?
--   What did you learn from this project that you will carry forward to future projects?
--   What are you most proud of in this project?
-
-Alternatively/additionally in mind some of the suggested ways to earn engagement points, and expand on this (or other aspects of your project) in your reflection:
-
--   Creating many figures and tables, or particularly complex or creative ones
--   Impressively thoughtful and thorough narrative writing in your literature review or discussion section
--   Employing sophisticated statistical techniques in your analysis
--   Making excellent use of markdown features to create a polished final product
--   Having a maximally reproducible and dynamic manuscript
--   Fully committing to best practices for version control and GitHub integration/organization
+Achieving all 30 learning objectives was challenging. However, I overcame this by checking off a few each day and regularly attending office hours. I aimed to attend at least one office hour per week, which I believe may earn me high engagement points for proactively seeking help and staying engaged in this class.
+For a few learning objectives, my implementation was not as coherent since I was primarily focused on demonstrating them. However, I formatted the QMD file in a way that ensures these sections do not disrupt the readability of my final report.
+The most rewarding aspect of this project was learning how to use and format a QMD file and render it into a PDF. I gained many practical skills that I can apply to real research, and for that, I am very grateful—thank you, Dr. Dowling!
+In other R classes, I found that many of the skills I learned were not particularly useful, and I forgot a lot of things after class. However, this class was truly practical. In particular, I found it extremely helpful to learn how to:
+* Use code chunk labels effectively,
+* Get in a habit of making frequent habits with meaningful messages,
+* Mastering version control (connecting git to my local R)
+* Format APA-style tables and graphs, 
+* Work with references, Citer, and Zotero for citations, and many others!
+If I were to start over, I would improve my time management skills so that I could submit my final project multiple times throughout the quarter instead of only twice at the end.
 
 ## Grading
 

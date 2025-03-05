@@ -86,7 +86,7 @@ Moreover, encounters with female scientists can increase girls' STEM aspirations
 ## Participants
 
 The study will recruit 96 girls aged 5–8 from a university infant database.
-This sample size and age range were chosen based on a prior study, which investigated children’s structural reasoning and demonstrated that structural reasoning begins developing around age 5 (Amemiya & Bian, 2024).
+This sample size and age range were chosen based on a prior study, which investigated children’s structural reasoning and demonstrated that structural reasoning begins developing around age 5 [@amemiyabian_2024_why].
 
 ## Procedure
 
@@ -245,7 +245,8 @@ calculate_numeric_summary <- function(df, column) {
 # Usage in the first context
 calculate_numeric_summary(data, "AgeYears")
 ```
-The dataset includes `r nrow(data)` participants, with ages ranging from `r min(data$AgeYears, na.rm = TRUE)` to `r max(data$AgeYears, na.rm = TRUE)` years old. The average age of participants is `r round(mean(data$AgeYears, na.rm = TRUE), 2)`, with a standard deviation of `r round(sd(data$AgeYears, na.rm = TRUE), 2)`. The median age is `r median(data$AgeYears, na.rm = TRUE)`. See @tbl-Descriptive-Statistics-Numeric for a full summary of the data.
+
+The dataset includes `r nrow(data)` participants, with ages ranging from `r min(data$AgeYears, na.rm = TRUE)` to `r max(data$AgeYears, na.rm = TRUE)` years. The average age of participants is `r round(mean(data$AgeYears, na.rm = TRUE), 2)` years (SD = `r round(sd(data$AgeYears, na.rm = TRUE), 2)`), and the median age is `r median(data$AgeYears, na.rm = TRUE)` years. See @tbl-Descriptive-Statistics-Numeric for a full summary of the data.
 
 ```{r}
 #| label: Descriptive Statistics Numeric Example 2
@@ -262,18 +263,18 @@ calculate_numeric_summary(data, "Progress")
 
 non_numeric_summary <- data %>%
   count(Condition) %>%
-  mutate(Proportion = round(n / sum(n) * 100, 2)) %>%  # Round proportions for readability
+  mutate(Proportion = (n / sum(n)) * 100) %>%  # Compute before renaming
   rename(
     "Condition" = Condition,
     "Count" = n,
-    "Proportion (%)" = Proportion
+    "Proportion (%)" = Proportion  # Keep the renaming step after ensuring Proportion exists
   )
+
 non_numeric_summary %>%
   flextable::flextable() %>%
   flextable::theme_apa()
 ```
-
-The dataset includes `r sum(non_numeric_summary$n)` participants. In the Baseline condition, `r non_numeric_summary$n[non_numeric_summary$Condition == "Baseline"]` participants were included, representing `r round(non_numeric_summary$Proportion[non_numeric_summary$Condition == "Baseline"], 2)`% of the sample. In the Between condition, `r non_numeric_summary$n[non_numeric_summary$Condition == "Between"]` participants were included, making up `r round(non_numeric_summary$Proportion[non_numeric_summary$Condition == "Between"], 2)`% of the total sample. Finally, in the Within condition, `r non_numeric_summary$n[non_numeric_summary$Condition == "Within"]` participants were included, comprising `r round(non_numeric_summary$Proportion[non_numeric_summary$Condition == "Within"], 2)`% of the dataset. See @tbl-Descriptive-Statistics-Non-numeric for a full summary of the categorical data.
+The dataset includes `r sum(non_numeric_summary$Count)` participants. In the Baseline condition, `r non_numeric_summary$Count[non_numeric_summary$Condition == "Baseline"]` participants were included, making up `r round(non_numeric_summary$"Proportion (%)"[non_numeric_summary$Condition == "Baseline"], 2)`% of the sample. In the Between condition, `r non_numeric_summary$Count[non_numeric_summary$Condition == "Between"]` participants were included, representing `r round(non_numeric_summary$"Proportion (%)"[non_numeric_summary$Condition == "Between"], 2)`% of the total sample. Finally, in the Within condition, `r non_numeric_summary$Count[non_numeric_summary$Condition == "Within"]` participants were included, comprising `r round(non_numeric_summary$"Proportion (%)"[non_numeric_summary$Condition == "Within"], 2)`% of the dataset.   
 
 ## Robot Building Open-ended Questions
 
@@ -290,9 +291,6 @@ results_table <- data.frame(
 )
 print(results_table)
 ```
-The Chi-Square test for condition and open-ended questions for robot building scenario showed a significant association, 
-χ²(`r chisq_test_1$parameter`) = `r round(chisq_test_1$statistic, 2)`, p = `r formatC(chisq_test_1$p.value, format = "e", digits = 2)`, 
-indicating that participants' responses in the robot open-ended category varied significantly across conditions.
 
 ```{r}
 #| label: Open Ended Explanations Measure robot
@@ -323,7 +321,11 @@ table <- table %>%
 
 ```{r}
 #| label: fig-robot-plot
-#| fig-cap: 'Robot Building Open-Ended Explanations: Explanation Types by Condition' 
+#| fig-cap: "Robot Building Open-Ended Explanations: Explanation Types by Condition"
+#| fig-height: 4  
+#| fig-width: 6  
+#| apa-note: "Stacked bar chart displaying the percentage of children providing each type of explanation across three experimental conditions: Baseline, Between, and Within. The y-axis represents the proportion of children giving each explanation type, while the x-axis represents the experimental condition. Explanation types are color-coded as follows: Intrinsic (pink), Structural (blue), Extrinsic (purple), Other (light gray), and Structural+Intrinsic (red)."
+
 
 # Stacked bar plot
 ggplot(table, aes(fill = Explanation_Type, y = value, x = Condition)) + 
@@ -338,7 +340,9 @@ ggplot(table, aes(fill = Explanation_Type, y = value, x = Condition)) +
 
 ```
 
-See @fig-robot-plot
+The Chi-Square test for condition and open-ended questions in the robot-building scenario showed a significant association, χ²(`r round(chisq_test_1$parameter, 2)`) = `r round(chisq_test_1$statistic, 2)`, p = `r formatC(chisq_test_1$p.value, format = "f", digits = 3)`, indicating that participants' responses in the robot open-ended category varied significantly across conditions.
+
+As illustrated in @fig-robot-plot, children in the Baseline condition predominantly provided Intrinsic Explanations, while those in the Between and Within conditions showed a notable shift toward Structural Explanations. Specifically, Intrinsic Explanations decreased in the Between and Within conditions, whereas Structural Explanations increased substantially in the Within condition. This pattern suggests that exposure to structural information in the Within condition influenced children's reasoning, leading them to attribute outcomes to structural factors rather than intrinsic ones.
 
 ## Puzzle Solving Open-ended Questions
 
@@ -356,9 +360,7 @@ results_table2 <- data.frame(
 )
 print(results_table2)
 ```
-In contrast, the Chi-Square test for condition and open-ended questions for puzzle solving scenario did not show significant results, 
-χ²(`r chisq_test_2$parameter`) = `r round(chisq_test_2$statistic, 2)`, p = `r round(chisq_test_2$p.value, 4)`, 
-suggesting that responses in the puzzle open-ended category were not significantly different across conditions.
+
 
 ```{r}
 #| label: Open Ended Explanations Measure puzzle
@@ -384,6 +386,9 @@ table$Explanation_Type<- with(table, factor(Explanation_Type, levels=c("Intrinsi
 ```{r}
 #| label: fig-puzzle-plot
 #| fig-cap: 'Puzzle Solving Open-Ended Explanations: Explanation Types by Condition' 
+#| fig-height: 4  
+#| fig-width: 6  
+#| apa-note: "Stacked bar chart displaying the percentage of children providing each type of explanation across three experimental conditions: Baseline, Between, and Within. The y-axis represents the proportion of children giving each explanation type, while the x-axis represents the experimental condition. Explanation types are color-coded as follows: Intrinsic (pink), Structural (blue), Extrinsic (purple), Other (light gray), and NA (dark gray)."
 
 #Bar graph
 ggplot(table, aes(fill=Explanation_Type, y=value, x=Condition)) + 
@@ -396,15 +401,23 @@ ggplot(table, aes(fill=Explanation_Type, y=value, x=Condition)) +
   theme_bw()
 ```
 
-See @fig-puzzle-plot
+In contrast, the Chi-Square test for condition and open-ended questions for the puzzle-solving scenario did not show significant results, 
+χ²(`r round(chisq_test_2$parameter, 2)`) = `r round(chisq_test_2$statistic, 2)`, p = `r formatC(chisq_test_2$p.value, format = "f", digits = 3)`, 
+suggesting that responses in the puzzle open-ended category were not significantly different across conditions.
+
+@fig-puzzle-plot illustrates that children do not appear to generalize their reasoning from the robot-building task to the puzzle-solving domain. Intrinsic Explanations remain the most common across all conditions, and structural explanations are present in baseline condition as well.
 
 ## Robot Building Closed-ended Questions
 
 ```{r}
 #| label: Closed ended Questions 
-#| include: false
+#| include: False
+data <- data %>%
+  mutate(ID = row_number())  
 
-# Exchanging categories into numbers: Robot Building
+length(unique(data$ID))
+nrow(data)
+
 data$robot_ability <-replace(data$robot_ability, data$robot_ability_r == "Really right", 4)
 data$robot_ability <-replace(data$robot_ability, data$robot_ability_r == "A little right", 3)
 data$robot_ability <-replace(data$robot_ability, data$robot_ability_nr == "A little not right", 2)
@@ -425,7 +438,6 @@ data$robot_control <-replace(data$robot_control, data$robot_control_r == "A litt
 data$robot_control <-replace(data$robot_control, data$robot_control_nr == "A little not right", 2)
 data$robot_control <-replace(data$robot_control, data$robot_control_nr == "Really not right", 1)
 
-# Exchanging categories into numbers: Puzzle solving
 data$puzzle_ability <-replace(data$puzzle_ability, data$puzzle_ability_r == "Really right", 4)
 data$puzzle_ability <-replace(data$puzzle_ability, data$puzzle_ability_r == "A little right", 3)
 data$puzzle_ability <-replace(data$puzzle_ability, data$puzzle_ability_nr == "A little not right", 2)
@@ -445,64 +457,41 @@ data$puzzle_control <-replace(data$puzzle_control, data$puzzle_control_r == "Rea
 data$puzzle_control <-replace(data$puzzle_control, data$puzzle_control_r == "A little right", 3)
 data$puzzle_control <-replace(data$puzzle_control, data$puzzle_control_nr == "A little not right", 2)
 data$puzzle_control <-replace(data$puzzle_control, data$puzzle_control_nr == "Really not right", 1)
+
+df.1.ratings <- data %>%
+  pivot_longer(cols = c(robot_structural, robot_ability, robot_interest, robot_control),
+               names_to = "explanation",
+               values_to = "rating")
+df.1.ratings$explanation <- factor(df.1.ratings$explanation, 
+                                   levels = c("robot_structural", "robot_ability", "robot_interest", "robot_control"),
+                                   labels = c("Structural", "Intrinsic-ability", "Intrinsic-interest", "Random"))
+
 ```
 
 ```{r}
-#| label: t-test
-#| include: false
+#| label: Linear Regression
+#| include: False
 
-data$robot_structural <- as.numeric(as.character(data$robot_structural))
+# structural
+linear.struc <- lm(robot_structural ~ Condition, data = data)
+summary(linear.struc)
 
-# Baseline vs. Between
-t_test_baseline_between <- t.test(robot_structural ~ Condition, 
-                                  data = data %>% 
-                                         filter(Condition %in% c("Baseline", "Between")) %>%
-                                         drop_na(robot_structural), 
-                                  var.equal = TRUE)
+# ability
+linear.abil <- lm(robot_ability ~ Condition, data = data)
+summary(linear.abil)
 
-# Baseline vs. Within
-t_test_baseline_within <- t.test(robot_structural ~ Condition, 
-                                 data = data %>%
-                                   filter(Condition %in% c("Baseline", "Within")) %>%
-                                   drop_na(robot_structural), 
-                                 var.equal = TRUE)
+# interest
+linear.inter <- lm(robot_interest ~ Condition, data = data)
+summary(linear.inter)
 
-results_table_ttest <- data.frame(
-  "Comparison" = c("Baseline vs. Between", "Baseline vs. Within"),
-  "t-value" = round(c(t_test_baseline_between$statistic, t_test_baseline_within$statistic), 3),
-  "df" = c(t_test_baseline_between$parameter, t_test_baseline_within$parameter),
-  "p-value" = signif(c(t_test_baseline_between$p.value, t_test_baseline_within$p.value), 3),
-  "95% CI Lower" = round(c(t_test_baseline_between$conf.int[1], t_test_baseline_within$conf.int[1]), 2),
-  "95% CI Upper" = round(c(t_test_baseline_between$conf.int[2], t_test_baseline_within$conf.int[2]), 2)
-)
-print(results_table_ttest)
-```
-
-A two-sample t-test was conducted to compare robot structural ratings between the Baseline and Between conditions.
-The results indicated no statistically significant difference between the two groups, t(`r round(t_test_baseline_between$parameter, 2)`) = `r round(t_test_baseline_between$statistic, 2)`, p = `r round(t_test_baseline_between$p.value, 3)`, 95% CI \[`r round(t_test_baseline_between$conf.int[1], 2)`, `r round(t_test_baseline_between$conf.int[2], 2)`\].
-
-A two-sample t-test was conducted to compare robot structural ratings between the Baseline and Within conditions.
-The results indicated that there was no statistically significant difference between the two groups, t(`r round(t_test_baseline_within$parameter, 2)`) = `r round(t_test_baseline_within$statistic, 2)`, p = `r round(t_test_baseline_within$p.value, 3)`, 95% CI \[`r round(t_test_baseline_within$conf.int[1], 2)`, `r round(t_test_baseline_within$conf.int[2], 2)`\].
-
-These findings suggest that Condition did not have a meaningful effect on robot structural ratings.
-
-```{r}
-#| label: Robot-Building
-#| include: false
-
-data <- read_csv("ST-P 2 Dataset use this!!!.csv")  
-data <- as.data.frame(data) #this was the only way to fix the error 
-
-df.1.ratings = reshape(data, direction = "long", idvar = "ID",
-                       varying = list(c('robot_structural', 'robot_ability', 'robot_interest', 'robot_control')),
-                       v.names = c("rating"),
-                       timevar = "explanation", times = c("Structural", "Intrinsic-ability", "Intrinsic-interest", "Random"))
-df.1.ratings$explanation <- factor(df.1.ratings$explanation, levels = c("Structural", "Intrinsic-ability", "Intrinsic-interest", "Random"))
 ```
 
 ```{r}
 #| label: fig-Bar-graph-robot
 #| fig-cap: 'Robot Building Close-Ended Explanations: Explanation Types by Condition' 
+#| fig-height: 4  
+#| fig-width: 6  
+#| apa-note: "Bar graph displaying the mean rating of explanations provided by children across three experimental conditions: Baseline, Between, and Within. The y-axis represents the mean rating of each explanation type, while the x-axis represents the experimental condition. Error bars indicate standard errors. Explanation types are color-coded as follows: Structural (blue), Intrinsic-ability (pink), Intrinsic-interest (light pink), and Random (gray)."
 
 ggplot(df.1.ratings, aes(x = Condition, y = rating, group = explanation, fill = explanation)) +
   geom_bar(stat = "summary", position = "dodge", color = "black") +
@@ -534,7 +523,9 @@ geom_point(aes(x = Condition, y = rating, group = explanation),
 
 ```
 
-See @fig-Bar-graph-robot
+The linear regression analyses for the robot-building closed-ended questions indicated no significant differences across conditions in children's explanations.For structural explanations, the model did not show a significant effect of condition, β = `r round(summary(linear.struc)$coefficients[3,1], 2)`, SE = `r round(summary(linear.struc)$coefficients[3,2], 2)`, t(`r round(summary(linear.struc)$coefficients[3,3], 2)`) = `r round(summary(linear.struc)$coefficients[3,4], 3)`, p = `r formatC(summary(linear.struc)$coefficients[3,4], format = "f", digits = 3)`, suggesting that ratings of structural explanations did not significantly differ in the Within condition. For ability explanations, the Within condition also did not show a significant effect, β = `r round(summary(linear.abil)$coefficients[3,1], 2)`, SE = `r round(summary(linear.abil)$coefficients[3,2], 2)`, t(`r round(summary(linear.abil)$coefficients[3,3], 2)`) = `r round(summary(linear.abil)$coefficients[3,4], 3)`, p = `r formatC(summary(linear.abil)$coefficients[3,4], format = "f", digits = 3)`. For interest explanations, there was a marginal effect in the Within condition, β = `r round(summary(linear.inter)$coefficients[3,1], 2)`, SE = `r round(summary(linear.inter)$coefficients[3,2], 2)`, t(`r round(summary(linear.inter)$coefficients[3,3], 2)`) = `r round(summary(linear.inter)$coefficients[3,4], 3)`, p = `r formatC(summary(linear.inter)$coefficients[3,4], format = "f", digits = 3)`, indicating a potential trend toward lower interest ratings in the Within condition, though it did not reach statistical significance.
+
+As illustrated in @fig-Bar-graph-robot, the Within condition showed a slight increase in structural explanations compared to Baseline and Between conditions, but this effect was not statistically significant. Ratings of intrinsic-ability and intrinsic-interest explanations decreased in the Within condition, though it did not reach statistical significance.
 
 ## Puzzle Solving Closed-ended Questions
 
@@ -544,16 +535,24 @@ See @fig-Bar-graph-robot
 
 #Puzzle-solving close-ended questions
 
-df.2.ratings = reshape(data, direction = "long", idvar = "ID",
-                         varying = list(c('puzzle_structural', 'puzzle_ability', 'puzzle_interest', 'puzzle_control')),
-                         v.names = c("rating"),
-                         timevar = "explanation", times = c("Structural", "Intrinsic-ability", "Intrinsic-interest", "Random"))
-df.2.ratings$explanation <- factor(df.1.ratings$explanation, levels = c("Structural", "Intrinsic-ability", "Intrinsic-interest", "Random"))
+df.2.ratings <- data %>%
+  pivot_longer(cols = c(puzzle_structural, puzzle_ability, puzzle_interest, puzzle_control),
+               names_to = "explanation",
+               values_to = "rating")
+
+df.2.ratings$explanation <- factor(df.2.ratings$explanation, 
+                                   levels = c("puzzle_structural", "puzzle_ability", "puzzle_interest", "puzzle_control"),
+                                   labels = c("Structural", "Intrinsic-ability", "Intrinsic-interest", "Random"))
+
+
 ```
 
 ```{r}
 #| label: fig-Bar-graph-puzzle
 #| fig-cap: 'Puzzle Solving Close-Ended Explanations: Explanation Types by Condition' 
+#| fig-height: 4  
+#| fig-width: 6  
+#| apa-note: "Bar graph displaying the mean rating of explanations provided by children across three experimental conditions: Baseline, Between, and Within. The y-axis represents the mean rating of each explanation type, while the x-axis represents the experimental condition. Error bars indicate standard errors. Explanation types are color-coded as follows: Structural (blue), Intrinsic-ability (pink), Intrinsic-interest (light pink), and Random (gray)."
 
 ggplot(df.2.ratings, aes(x = Condition, y = rating, group = explanation, fill = explanation)) +
     geom_bar(stat = "summary", position = "dodge", color = "black") +
@@ -585,9 +584,15 @@ ggplot(df.2.ratings, aes(x = Condition, y = rating, group = explanation, fill = 
 
 ```
 
-See @fig-Bar-graph-puzzle
+The overall pattern of explanation types appears similar to the robot-building scenario. As illustrated in @fig-Bar-graph-puzzle, structural explanations showed a slight increase in the Within condition compared to Baseline and Between conditions, while intrinsic-ability and intrinsic-interest explanations remained relatively stable across conditions.
 
 # Discussion
+
+Overall, structural explanations increased in the Within condition across both open- and closed-ended questions, while intrinsic explanations decreased in the Between and Within conditions compared to the Baseline. Notably, both the increase in structural explanations and the decline in intrinsic explanations were more pronounced in the Within condition.
+
+Interestingly, children appeared to apply structural reasoning in closed-ended questions more consistently than in open-ended questions, potentially extending it from the robot-building scenario to the puzzle-solving domain. However, given the lack of statistical significance, this should be interpreted cautiously as a possible trend rather than definitive evidence of generalization.
+
+Additionally, structural explanations were present in the puzzle-solving scenario, which was always presented as the Baseline condition. This raises potential methodological concerns.Since all participants engaged in closed-ended questions about robot building—which included structural explanations—before completing the puzzle-solving scenario, it is possible that children recalled these structural explanations and reused them when responding to subsequent questions.This could be a limitation in the study design, as prior exposure to structural reasoning may have influenced children's responses across conditions.
 
 In sum, my research addresses a critical gap in the literature by examining how exposure to representations of female scientists in educational materials shapes children’s reasoning about gender disparities in STEM achievements—a topic that, to my knowledge, has not been explored.
 By shedding light on how children’s reasoning about these disparities can be influenced, this study offers valuable insights for fostering a more equitable future in STEM fields.

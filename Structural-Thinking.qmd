@@ -597,6 +597,7 @@ Additionally, structural explanations were present in the puzzle-solving scenari
 In sum, my research addresses a critical gap in the literature by examining how exposure to representations of female scientists in educational materials shapes children’s reasoning about gender disparities in STEM achievements—a topic that, to my knowledge, has not been explored.
 By shedding light on how children’s reasoning about these disparities can be influenced, this study offers valuable insights for fostering a more equitable future in STEM fields.
 
+\newpage
 # References
 
 <!-- References will auto-populate in the refs div below -->

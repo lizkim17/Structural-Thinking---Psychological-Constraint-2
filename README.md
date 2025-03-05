@@ -6,11 +6,11 @@ How does exposure to structural information, such as the gender of scientists in
 
 I submitted a link of a new repo (<https://github.com/lizkim17/Structural-Thinking---Psychological-Constraint-2/tree/main/Final%20Report>).
 
-Final Report.qmd: Qmd file for the final report of the project.
+Structural Thinking.qmd: Qmd file for the final report of the project.
 
-Final-Report.pdf: PDF document version of the final report.
+Structural Thinking: PDF document version of the final report.
 
-Final Report.Rproj: R Project file for this project.
+Structural Thinking.Rproj: R Project file for this project.
 
 README.md: File providing details about the project.
 

@@ -151,7 +151,7 @@ knitr::opts_chunk$set(
 #| include: false
 
 # Read the dataset
-data <- read.csv("ST-P 2 Dataset use this!!!.csv")
+data <- read_csv("ST-P 2 Dataset use this!!!.csv")
 ```
 
 ```{r}
@@ -229,12 +229,12 @@ print(data_operators %>% select(AgeYears, Age_Group, Is_Child))
 calculate_numeric_summary <- function(df, column) {
   summary_df <- df %>%
     summarise(
-      count = n(), # Total number of observations
-      mean_value = mean(.data[[column]], na.rm = TRUE), # Mean of the column
-      sd_value = sd(.data[[column]], na.rm = TRUE), # Standard deviation
-      min_value = min(.data[[column]], na.rm = TRUE), # Minimum value
-      max_value = max(.data[[column]], na.rm = TRUE), # Maximum value
-      median_value = median(.data[[column]], na.rm = TRUE) # Median value
+      'Total count' = n(), # Total number of observations
+      'Mean' = mean(.data[[column]], na.rm = TRUE), # Mean of the column
+      'Standard Deviation' = sd(.data[[column]], na.rm = TRUE), # Standard deviation
+      'Minimum' = min(.data[[column]], na.rm = TRUE), # Minimum value
+      'Maximum' = max(.data[[column]], na.rm = TRUE), # Maximum value
+      'Median' = median(.data[[column]], na.rm = TRUE) # Median value
     )
 # Return a formatted flextable with APA-style formatting
   return(summary_df %>% 
@@ -262,7 +262,12 @@ calculate_numeric_summary(data, "Progress")
 
 non_numeric_summary <- data %>%
   count(Condition) %>%
-  mutate(Proportion = n / sum(n) * 100)
+  mutate(Proportion = round(n / sum(n) * 100, 2)) %>%  # Round proportions for readability
+  rename(
+    "Condition" = Condition,
+    "Count" = n,
+    "Proportion (%)" = Proportion
+  )
 non_numeric_summary %>%
   flextable::flextable() %>%
   flextable::theme_apa()
@@ -278,7 +283,12 @@ The dataset includes `r sum(non_numeric_summary$n)` participants. In the Baselin
 
 #Chi-Square Test
 chisq_test_1 <- chisq.test(data$Condition, data$robot_OE_cat)
-print(chisq_test_1)
+results_table <- data.frame(
+  "Chi-Square" = round(chisq_test_1$statistic, 3),
+  "df" = chisq_test_1$parameter,
+  "p-value" = signif(chisq_test_1$p.value, 3)
+)
+print(results_table)
 ```
 The Chi-Square test for condition and open-ended questions for robot building scenario showed a significant association, 
 χ²(`r chisq_test_1$parameter`) = `r round(chisq_test_1$statistic, 2)`, p = `r formatC(chisq_test_1$p.value, format = "e", digits = 2)`, 
@@ -339,6 +349,12 @@ See @fig-robot-plot
 #Chi-Square Test
 chisq_test_2 <- chisq.test(data$Condition, data$puzzle_OE_cat)
 print(chisq_test_2)
+results_table2 <- data.frame(
+  "Chi-Square" = round(chisq_test_1$statistic, 3),
+  "df" = chisq_test_1$parameter,
+  "p-value" = signif(chisq_test_1$p.value, 3)
+)
+print(results_table2)
 ```
 In contrast, the Chi-Square test for condition and open-ended questions for puzzle solving scenario did not show significant results, 
 χ²(`r chisq_test_2$parameter`) = `r round(chisq_test_2$statistic, 2)`, p = `r round(chisq_test_2$p.value, 4)`, 
@@ -443,7 +459,6 @@ t_test_baseline_between <- t.test(robot_structural ~ Condition,
                                          filter(Condition %in% c("Baseline", "Between")) %>%
                                          drop_na(robot_structural), 
                                   var.equal = TRUE)
-print(t_test_baseline_between)
 
 # Baseline vs. Within
 t_test_baseline_within <- t.test(robot_structural ~ Condition, 
@@ -451,8 +466,16 @@ t_test_baseline_within <- t.test(robot_structural ~ Condition,
                                    filter(Condition %in% c("Baseline", "Within")) %>%
                                    drop_na(robot_structural), 
                                  var.equal = TRUE)
-print(t_test_baseline_within)
 
+results_table_ttest <- data.frame(
+  "Comparison" = c("Baseline vs. Between", "Baseline vs. Within"),
+  "t-value" = round(c(t_test_baseline_between$statistic, t_test_baseline_within$statistic), 3),
+  "df" = c(t_test_baseline_between$parameter, t_test_baseline_within$parameter),
+  "p-value" = signif(c(t_test_baseline_between$p.value, t_test_baseline_within$p.value), 3),
+  "95% CI Lower" = round(c(t_test_baseline_between$conf.int[1], t_test_baseline_within$conf.int[1]), 2),
+  "95% CI Upper" = round(c(t_test_baseline_between$conf.int[2], t_test_baseline_within$conf.int[2]), 2)
+)
+print(results_table_ttest)
 ```
 
 A two-sample t-test was conducted to compare robot structural ratings between the Baseline and Between conditions.
@@ -466,6 +489,9 @@ These findings suggest that Condition did not have a meaningful effect on robot 
 ```{r}
 #| label: Robot-Building
 #| include: false
+
+data <- read_csv("ST-P 2 Dataset use this!!!.csv")  
+data <- as.data.frame(data) #this was the only way to fix the error 
 
 df.1.ratings = reshape(data, direction = "long", idvar = "ID",
                        varying = list(c('robot_structural', 'robot_ability', 'robot_interest', 'robot_control')),

@@ -18,4 +18,4 @@ research-assessment.md: Markdown file for project assessment.
 
 ST-P 2 Dataset use this!!!.csv: Raw dataset
 
-Biliography.bib: 
+Biliography.bib: References list for the project.

@@ -97,6 +97,9 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
         -   [x] Objective attempt
         -   [ ] Objective met
         -   Grader comments:
+            - Repo/file/folder names should be informative and relevant to content, not class context (e.g., nrdowling/infant-gesture not nrdowling/d2m-project; infant-gestures.qmd not d2m-final.qmd).
+            - Repo should not contain any files unrelated to the project (e.g, files from the example apaquarto manuscript)
+            - Project files should be in the top level of the repository
 
 2.  Maintain an informative and up-to-date README.md
 
@@ -107,6 +110,7 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
         -   [x] Objective attempt
         -   [ ] Objective met
         -   Grader comments:
+            - The content of your README is fine, but since you don't have it in the top level of your repo it isn't being processed as a README. You'll know its working correctly if you see it render on the github page beneath the files.
 
 3.  integrate a GitHub repo with an R studio project, including .gitignore file
 
@@ -117,6 +121,7 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
         -   [x] Objective attempt
         -   [ ] Objective met
         -   Grader comments:
+            -  .gitignore should include (minimally) a localonly folder and pdf render files (e.g., the *_files folder, .ttt, .tex., .log, etc.), as well as comments describing the ignored items (in addition to the default ignored items if you’re using a template)
 
 4.  effectively use version control
 
@@ -125,7 +130,7 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
     2.  Relies on document revisions rather than manually created new versions
 
         -   [x] Objective attempt
-        -   [ ] Objective met
+        -   [x] Objective met
         -   Grader comments:
 
 ### R programming
@@ -142,6 +147,8 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
         -   [x] Objective attempt
         -   [ ] Objective met
         -   Grader comments:
+            - I see your pilot R script uses both install and load functions, but you need to include (commented out) installs in your .qmd since the .R file isn't run when you knit the document 
+            - Refer to the d2mr resources page for a list of the packages you can load without a commented out install line.
 
 6.  Use arithmetic, comparison, and logical operators
 
@@ -149,7 +156,7 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
 
     2.  Uses multiple operators in data transformation pipelines and/or inline R code
 
-        -   [x] Objective attempt
+        -   [ ] Objective attempt
         -   [ ] Objective met
         -   Grader comments:
 
@@ -161,7 +168,7 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
 
     3.  Functions are well-documented with comments
 
-        -   [x] Objective attempt
+        -   [ ] Objective attempt
         -   [ ] Objective met
         -   Grader comments:
 
@@ -171,7 +178,7 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
 
     2.  Uses multiple types of conditional/loop functions (e.g., `if_else()`, `case_when()`, `for`, `while`)
 
-        -   [x] Objective attempt
+        -   [ ] Objective attempt
         -   [ ] Objective met
         -   Grader comments:
 
@@ -186,6 +193,7 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
         -   [x] Objective attempt
         -   [ ] Objective met
         -   Grader comments:
+            - Use readr functions not base/utils functions (specifically, use read_csv and write_csv)
 
 10. Use `dplyr` and `tidyr` functions to transform data
 
@@ -196,7 +204,7 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
     3.  Combines `dplyr` and `tidyr` functions in a data transformation pipeline
 
         -   [x] Objective attempt
-        -   [ ] Objective met
+        -   [x] Objective met
         -   Grader comments:
 
 11. Use `stringr` functions to work with string variables
@@ -206,8 +214,8 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
     2.  Uses `stringr` functions in a data transformation pipeline
 
         -   [x] Objective attempt
-        -   [ ] Objective met
-        -   Grader comments:
+        -   [x] Objective met
+        -   Grader comments: I see that you do a lot of line-by-line/column-by-column reassignment and text replacement in both you .R script and .qmd. You can use stringr functions to do the same things much more efficiently!
 
 12. Use `forcats` functions to work with factor variables
 
@@ -217,7 +225,7 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
     -   NOTE: Though they are base R functions, `factor()` and `levels()` can be used to meet this objective as long as they are used in a way that demonstrates the same skills as `forcats` functions, which should involve including optional arguments
 
         -   [x] Objective attempt
-        -   [ ] Objective met
+        -   [x] Objective met
         -   Grader comments:
 
 ### Data visualization with ggplot2
@@ -229,7 +237,7 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
     2.  At least one plot is multi-variable
 
         -   [x] Objective attempt
-        -   [ ] Objective met
+        -   [x] Objective met
         -   Grader comments:
 
 14. Use dynamic aesthetics to group data
@@ -237,7 +245,7 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
     1.  Uses at least 2 unique data-mapped `aes()` arguments (e.g., color, shape, size) to group data in a plot in one or multiple plots
 
         -   [x] Objective attempt
-        -   [ ] Objective met
+        -   [x] Objective met
         -   Grader comments:
 
 15. Use facets to create parallel plots
@@ -248,11 +256,11 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
     4.  Combines facets with other dynamic grouping aesthetics
     5.  If data only includes 1 sensible grouping variable, it may be used for both the faceting and groupin aes.
 
-    ```         
-    -   [v] Objective attempt
-    -   [ ] Objective met
-    -   Grader comments:
-    ```
+          
+        -   [x] Objective attempt
+        -   [x] Objective met
+        -   Grader comments:
+
 
 16. Create publication-quality plots using `theme` and `labs` layers
 
@@ -266,7 +274,10 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
 
         -   [x] Objective attempt
         -   [ ] Objective met
-        -   Grader comments:
+        -   Grader comments: Figures are looking really good! A few minor changes are needed to have them be publication-quality:
+            - They should be smaller, no more than half the height of the page
+            - Use fig-cap to add titles to all plots
+            - Use apa-note to add captions to plots offering simple explanation of how to interpret them
 
 ### Data analysis
 
@@ -279,8 +290,8 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
     -   NOTE: This objective may be met with only numeric or non-numeric summaries if they are sufficiently complex (at Dr. Dowling's discretion)
 
         -   [x] Objective attempt
-        -   [ ] Objective met
-        -   Grader comments:
+        -   [x] Objective met
+        -   Grader comments: Don't print raw output!
 
 18. Perform simple hypothesis testing analyses for multiple data types
 
@@ -291,8 +302,8 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
     -   NOTE: This objective may be met with only numeric or factor data analyses if they are sufficiently complex (at Dr. Dowling's discretion)
 
         -   [x] Objective attempt
-        -   [ ] Objective met
-        -   Grader comments:
+        -   [x] Objective met
+        -   Grader comments: Don't print raw output!
 
 19. Present and interpret statistics in manuscript narrative
 
@@ -307,6 +318,9 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
         -   [x] Objective attempt
         -   [ ] Objective met
         -   Grader comments:
+            - use inline R code to report statistics
+            - don't print raw output; save as object and/or render as table
+            - round values per APA7 guidelines (2 decimals for most things; 3 for p-values)
 
 ### BibTeX
 
@@ -318,7 +332,7 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
 
     3.  May use `cite_r()` to cite R and R packages
 
-        -   [x] Objective attempt
+        -   [ ] Objective attempt
         -   [ ] Objective met
         -   Grader comments:
 
@@ -334,7 +348,7 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
 
     5.  May include references not cited in-text
 
-        -   [x] Objective attempt
+        -   [ ] Objective attempt
         -   [ ] Objective met
         -   Grader comments:
 
@@ -352,7 +366,9 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
 
         -   [x] Objective attempt
         -   [ ] Objective met
-        -   Grader comments:
+        -   Grader comments: 
+            - Missing labels
+            - When you add them, use Quarto comment-style chunk labels (e.g., #| label: load-data) and options (#| echo: FALSE).
 
 23. Use code chunks to set up a quarto document
 
@@ -365,7 +381,7 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
     4.  Organizes setup chunks sensibly
 
         -   [x] Objective attempt
-        -   [ ] Objective met
+        -   [x] Objective met
         -   Grader comments:
 
 24. Render publication-quality tables, figures, and images from code chunks
@@ -380,7 +396,13 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
 
         -   [x] Objective attempt
         -   [ ] Objective met
-        -   Grader comments:
+        -   Grader comments:  
+            - Add `fig-` label to all figures
+            - Use fig-cap to add titles to all plots
+            - Use apa-note to add captions to plots offering simple explanation of how to interpret them
+            - Create a table (e.g., kbl, flextable, gt)
+            - Reference all figures (with `@` crossreferencing) in text
+            
 
 25. Execute descriptive and inferential analyses in code chunks
 
@@ -396,7 +418,8 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
 
         -   [x] Objective attempt
         -   [ ] Objective met
-        -   Grader comments:
+        -   Grader comments: 
+            - results are displayed as raw output
 
 ### R Markdown and Quarto
 
@@ -405,7 +428,7 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
     1.  Includes all necessary metadata, output options, and formatting options necessary to render an APA styled document (or other specified style if appropriate for the project)
 
         -   [x] Objective attempt
-        -   [ ] Objective met
+        -   [x] Objective met
         -   Grader comments:
 
 27. Use quarto R Markdown to compose an academic manuscript
@@ -420,6 +443,7 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
         -   [x] Objective attempt
         -   [ ] Objective met
         -   Grader comments:
+            -  I don't see any markdown styling or elements
 
 28. Use inline R variables to replace static text
 
@@ -429,7 +453,7 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
 
     3.  Ideally, uses inline R references for *all* data-dependent text
 
-        -   [x] Objective attempt
+        -   [ ] Objective attempt
         -   [ ] Objective met
         -   Grader comments:
 
@@ -437,7 +461,7 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
 
     1.  Uses inline R functions to render at least 3 unique data-dependent text outputs (e.g., performs rounding, calculates means, subtracts one list length from another, etc. -- inline rather than in a code chunk)
 
-        -   [x] Objective attempt
+        -   [ ] Objective attempt
         -   [ ] Objective met
         -   Grader comments:
 
@@ -454,26 +478,37 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
         -   [x] Objective attempt
         -   [ ] Objective met
         -   Grader comments:
+            - In APA7, level 1 headings are reserved for # Abstract, # Methods, # Results, # Discussion, # References, and # Appendix.
+            - Analysis results are not presented in APA format
+            - Does not include text of results or discussion
+            - Does not render a references section or have a heading for it
+            - Renders appendix without content
 
 ## Reflection (Optional)
 
-Achieving all 30 learning objectives was challenging. However, I overcame this by checking off a few each day and regularly attending office hours. I aimed to attend at least one office hour per week, which I believe may earn me high engagement points for proactively seeking help and staying engaged in this class.
-For a few learning objectives, my implementation was not as coherent since I was primarily focused on demonstrating them. However, I formatted the QMD file in a way that ensures these sections do not disrupt the readability of my final report.
-The most rewarding aspect of this project was learning how to use and format a QMD file and render it into a PDF. I gained many practical skills that I can apply to real research, and for that, I am very grateful—thank you, Dr. Dowling!
-In other R classes, I found that many of the skills I learned were not particularly useful, and I forgot a lot of things after class. However, this class was truly practical. In particular, I found it extremely helpful to learn how to:
-* Use code chunk labels effectively,
-* Get in a habit of making frequent habits with meaningful messages,
-* Mastering version control (connecting git to my local R)
-* Format APA-style tables and graphs, 
-* Work with references, Citer, and Zotero for citations, and many others!
-If I were to start over, I would improve my time management skills so that I could submit my final project multiple times throughout the quarter instead of only twice at the end.
+Optionally (for engagement points) write a brief reflection about your work on this project. You can use this space to answer the following questions, but feel free to ignore these questions and write about whatever you think is most important.
+
+-   What was the most challenging aspect of this project?
+-   What was the most rewarding aspect of this project?
+-   What would you do differently if you were to start over?
+-   What did you learn from this project that you will carry forward to future projects?
+-   What are you most proud of in this project?
+
+Alternatively/additionally in mind some of the suggested ways to earn engagement points, and expand on this (or other aspects of your project) in your reflection:
+
+-   Creating many figures and tables, or particularly complex or creative ones
+-   Impressively thoughtful and thorough narrative writing in your literature review or discussion section
+-   Employing sophisticated statistical techniques in your analysis
+-   Making excellent use of markdown features to create a polished final product
+-   Having a maximally reproducible and dynamic manuscript
+-   Fully committing to best practices for version control and GitHub integration/organization
 
 ## Grading
 
 All final projects are graded by Dr. Dowling. You will see your grade on Canvas separated into two categories: objective points and engagement points.
 
--   **Objective points:** #/30
--   **Engagement points:** #/10
--   **Total points:** #/40
+-   **Objective points:** 11/30
+-   **Engagement points:** 3/10
+-   **Total points:** 14/40
 
-**Comments:**
+**Comments:** Nice start, Liz! You've got a great foundation in place. Looking forward to reading your final draft! Be sure to reorganize your git repo before your next submission. Most importantly, your project should exist in the top level of the repo.

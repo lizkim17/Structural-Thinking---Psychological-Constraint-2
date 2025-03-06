@@ -112,6 +112,20 @@ After each scenario, open-ended questions will prompt them to explain why no gir
 #| label: Set up
 #| include: false
 
+#install.packages("dplyr")
+#install.packages("devtools")
+#install.packages("car")
+#install.packages("boot")
+#install.packages("ggplot2")
+#install.packages("lme4")
+#install.packages("RColorBrewer")
+#install.packages("tidyverse")
+#install.packages("effectsize")
+#install.packages("rcompanion")
+#install.packages("nlme")
+#install.packages("Hmisc")
+#install.packages("flextable")
+
 library(dplyr)
 library(devtools)
 library(car)
@@ -274,7 +288,7 @@ non_numeric_summary %>%
   flextable::flextable() %>%
   flextable::theme_apa()
 ```
-The dataset includes `r sum(non_numeric_summary$Count)` participants. In the Baseline condition, `r non_numeric_summary$Count[non_numeric_summary$Condition == "Baseline"]` participants were included, making up `r round(non_numeric_summary$"Proportion (%)"[non_numeric_summary$Condition == "Baseline"], 2)`% of the sample. In the Between condition, `r non_numeric_summary$Count[non_numeric_summary$Condition == "Between"]` participants were included, representing `r round(non_numeric_summary$"Proportion (%)"[non_numeric_summary$Condition == "Between"], 2)`% of the total sample. Finally, in the Within condition, `r non_numeric_summary$Count[non_numeric_summary$Condition == "Within"]` participants were included, comprising `r round(non_numeric_summary$"Proportion (%)"[non_numeric_summary$Condition == "Within"], 2)`% of the dataset.   
+The dataset includes `r sum(non_numeric_summary$Count)` participants. In the Baseline condition, `r non_numeric_summary$Count[non_numeric_summary$Condition == "Baseline"]` participants were included, making up `r round(non_numeric_summary$"Proportion (%)"[non_numeric_summary$Condition == "Baseline"], 2)`% of the sample. In the Between condition, `r non_numeric_summary$Count[non_numeric_summary$Condition == "Between"]` participants were included, representing `r round(non_numeric_summary$"Proportion (%)"[non_numeric_summary$Condition == "Between"], 2)`% of the total sample. Finally, in the Within condition, `r non_numeric_summary$Count[non_numeric_summary$Condition == "Within"]` participants were included, comprising `r round(non_numeric_summary$"Proportion (%)"[non_numeric_summary$Condition == "Within"], 2)`% of the dataset. See @tbl-Descriptive-Statistics-Non-numeric for a full summary of the data.  
 
 ## Robot Building Open-ended Questions
 

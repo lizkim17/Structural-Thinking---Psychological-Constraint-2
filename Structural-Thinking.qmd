@@ -25,7 +25,8 @@ author-note:
     financial-support: ~
     gratitude: ~
     authorship-agreements: ~
-abstract: "Gender bias in STEM educational materials remains a significant barrier to gender equity, with textbooks and online resources often underrepresenting female scientists. This study investigates how exposure to female representation in STEM textbooks influences children’s structural reasoning about gender disparities in STEM achievement. 96 children aged 5–8 were assigned to one of three conditions    Findings show that    ."
+abstract: "Gender bias in STEM educational materials remains a significant barrier to gender equity, with textbooks and online resources often underrepresenting female scientists. This study examines whether children recognize the lack of female scientists as a structural barrier in STEM by presenting them with two hypothetical competition scenarios: robot-building and puzzle-solving. In the robot-building scenario, 96 children aged 5–8 children were randomly assigned to one of three conditions varying the representation of male and female scientists in textbooks. Open- and closed-ended questions assess their reasoning about gender disparities, with the puzzle-solving competition serving as a baseline to test generalization. Findings suggest that structural explanations increased and intrinsic explanations decreased in the Within condition, though generalization across domains was inconclusive."
+
 keywords: [Gender Bias in STEM, Structural Reasoning, Educational Materials]
 bibliography: bibliography.bib
 format:
@@ -78,7 +79,7 @@ Instead, they are part of a group facing societal bias, fostering a sense of bel
 ## The Impact of Female Representation on STEM Engagement
 
 Exposing girls to female representation in STEM can significantly enhance their motivation to pursue STEM careers and reduce gender biases.
-Diverse STEM female figures in media and educational settings foster a positive association of women with STEM fields from an early age [@kongetal_2020_reducing].
+@kongetal_2020_reducing finds that diverse STEM female figures in media and educational settings foster a positive association of women with STEM fields from an early age. 
 Moreover, encounters with female scientists can increase girls' STEM aspirations and counteract stereotypes [@bredaetal_2023_how; @master_2021_gender; @gonzalez-perezetal_2020_girls]
 
 # Method

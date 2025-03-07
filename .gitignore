@@ -47,3 +47,9 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+
+# Ignore temporary files when rendering
+*.ttt
+*.tex
+*.log
+*_files/

@@ -1,1 +1,0 @@
-quarto::quarto_use_template("wjschne/apaquarto", no_prompt = TRUE)

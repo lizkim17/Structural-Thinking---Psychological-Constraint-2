@@ -26,7 +26,6 @@ author-note:
     gratitude: ~
     authorship-agreements: ~
 abstract: "Gender bias in STEM educational materials remains a significant barrier to gender equity, with textbooks and online resources often underrepresenting female scientists. This study examines whether children recognize the lack of female scientists as a structural barrier in STEM by presenting them with two hypothetical competition scenarios: robot-building and puzzle-solving. In the robot-building scenario, 96 children aged 5–8 children were randomly assigned to one of three conditions varying the representation of male and female scientists in textbooks. Open- and closed-ended questions assess their reasoning about gender disparities, with the puzzle-solving competition serving as a baseline to test generalization. Findings suggest that structural explanations increased and intrinsic explanations decreased in the Within condition, though generalization across domains was inconclusive."
-
 keywords: [Gender Bias in STEM, Structural Reasoning, Educational Materials]
 bibliography: bibliography.bib
 format:
@@ -39,8 +38,6 @@ editor:
     wrap: sentence
 floatsintext: true
 ---
-
-# Introduction
 
 ## Gender Bias in STEM Educational Materials
 
@@ -166,71 +163,7 @@ knitr::opts_chunk$set(
 #| include: false
 
 # Read the dataset
-data <- read_csv("ST-P 2 Dataset use this!!!.csv")
-```
-
-```{r}
-#| label: Using facets for LO:15
-#| include: false
-
-# Histogram : facet_wrap
-ggplot(data, aes(x = AgeYears)) +
-  geom_histogram(binwidth = 1, fill = "lightblue", color = "black") +
-  facet_wrap(~ Condition, scales = "free") +
-  theme_minimal() +
-  labs(title = "Age Distribution by Condition", x = "Age (Years)", y = "Count")
-
-# Histogram : facet grid 
-ggplot(data, aes(x = AgeYears)) +
-  geom_histogram(binwidth = 1, fill = "lightblue", color = "black") +
-  facet_grid(Condition ~ Gender, scales = "free") +  
-  theme_minimal() +
-  labs(title = "Age Distribution by Condition and Gender", x = "Age (Years)", y = "Count")
-
-```
-
-```{r}
-#| label: Using str() for LO:11
-#| include: false
-
-# Data transformation pipeline with stringr functions
-data_summary <- data %>%
-  summarise(
-    age5_count = sum(str_count(as.character(AgeYears), "5"), na.rm = TRUE),  
-    baseline_exists = any(str_detect(Condition, "Baseline")) 
-  )
-print(data_summary)
-```
-
-```{r}
-#| label: Using operators for LO:6
-#| include: false
-
-# Use arithmetic, comparison, and logical operators
-data_operators <- data %>%
-  mutate(
-    Age_Same = AgeYears * 1,  
-    Is_Older_Than_6 = AgeYears > 7,  
-    Meets_Criteria = AgeYears > 7 & Condition == "Within"  
-  )
-
-print(data_operators %>% select(AgeYears, Condition, Age_Same, Is_Older_Than_6, Meets_Criteria))
-```
-
-```{r}
-#| label: Using conditional statements/loops for LO:8
-#| include: false
-
-# Conditional statement: Categorize age groups 
-data_operators <- data_operators %>%
-  mutate(
-    Age_Group = case_when(
-      AgeYears <= 6 ~ "Young",     
-      AgeYears > 6 ~ "old"      
-    ),
-    Is_Child = if_else(AgeYears < 9, "Yes", "No")
-  ) #this should produce "Yes" since the age range for this study is 5-8
-print(data_operators %>% select(AgeYears, Age_Group, Is_Child))
+data <- read_csv("ST-P 2 Dataset Final.csv")
 ```
 
 ## Descriptive Statistics
@@ -362,7 +295,7 @@ As illustrated in @fig-robot-plot, children in the Baseline condition predominan
 ## Puzzle Solving Open-ended Questions
 
 ```{r}
-#| label: Chi-Sqaure Test for Puzzle
+#| label: analysis-chi2-puzzle
 #| include: false
 
 #Chi-Square Test
@@ -611,6 +544,73 @@ Additionally, structural explanations were present in the puzzle-solving scenari
 
 In sum, my research addresses a critical gap in the literature by examining how exposure to representations of female scientists in educational materials shapes children’s reasoning about gender disparities in STEM achievements—a topic that, to my knowledge, has not been explored.
 By shedding light on how children’s reasoning about these disparities can be influenced, this study offers valuable insights for fostering a more equitable future in STEM fields.
+
+# Appendix
+
+```{r}
+#| label: name of the plot!
+#| include: false
+# Histogram : facet_wrap
+ggplot(data, aes(x = AgeYears)) +
+  geom_histogram(binwidth = 1, fill = "lightblue", color = "black") +
+  facet_wrap(~ Condition, scales = "free") +
+  theme_minimal() +
+  labs(title = "Age Distribution by Condition", x = "Age (Years)", y = "Count")
+```
+
+```{r}
+# Histogram : facet_grid
+ggplot(data, aes(x = AgeYears)) +
+  geom_histogram(binwidth = 1, fill = "lightblue", color = "black") +
+  facet_grid(Condition ~ Gender, scales = "free") +  
+  theme_minimal() +
+  labs(title = "Age Distribution by Condition and Gender", x = "Age (Years)", y = "Count")
+
+```
+
+```{r}
+#| label: Using str() for LO:11
+#| include: false
+
+# Data transformation pipeline with stringr functions
+data_summary <- data %>%
+  summarise(
+    age5_count = sum(str_count(as.character(AgeYears), "5"), na.rm = TRUE),  
+    baseline_exists = any(str_detect(Condition, "Baseline")) 
+  )
+print(data_summary)
+```
+
+```{r}
+#| label: Using operators for LO:6
+#| include: false
+
+# Use arithmetic, comparison, and logical operators
+data_operators <- data %>%
+  mutate(
+    Age_Same = AgeYears * 1,  
+    Is_Older_Than_6 = AgeYears > 7,  
+    Meets_Criteria = AgeYears > 7 & Condition == "Within"  
+  )
+
+print(data_operators %>% select(AgeYears, Condition, Age_Same, Is_Older_Than_6, Meets_Criteria))
+```
+
+```{r}
+#| label: Using conditional statements/loops for LO:8
+#| include: false
+
+# Conditional statement: Categorize age groups 
+data_operators <- data_operators %>%
+  mutate(
+    Age_Group = case_when(
+      AgeYears <= 6 ~ "Young",     
+      AgeYears > 6 ~ "old"      
+    ),
+    Is_Child = if_else(AgeYears < 9, "Yes", "No")
+  ) #this should produce "Yes" since the age range for this study is 5-8
+print(data_operators %>% select(AgeYears, Age_Group, Is_Child))
+```
 
 \newpage
 # References

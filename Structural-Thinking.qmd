@@ -39,18 +39,12 @@ editor:
 floatsintext: true
 ---
 
-## Gender Bias in STEM Educational Materials
-
 Gender bias in STEM often hides in plain sight, subtly embedded in textbooks and classroom materials.
 Women are significantly underrepresented in school textbooks, particularly in professional STEM contexts [@crawfurdetal_2024_sexist; @kerkhovenetal_2016_gender].
 An analysis of over 1,200 textbooks from 34 countries found that female figures appear less frequently in STEM contexts, reinforcing traditional gender roles and shaping students' perceptions of who is suited for science fields [@crawfurdetal_2024_sexist].
 Similarly, online science education materials tend to portray male characters as more engaged in STEM activities, reinforcing the association of STEM with masculinity [@kerkhovenetal_2016_gender].
 When girls consistently see male scientists, mathematicians, and engineers conveyed as the primary figures of success, they receive an implicit message about who “belongs” in these fields, which can discourage them from envisioning themselves as future STEM professionals [@master_2021_gender].
 Thus, balanced gender representation in educational materials is important, as biased portrayals can dissuade girls from pursuing STEM by influencing their beliefs about their abilities and potential in these fields.
-
-How does exposure to structural information, such as the gender of scientists in STEM textbooks, impact children's structural reasoning about gender-based disparities in STEM achievement?
-We hypothesize that exposure to structural information demonstrating that the gender of scientists in STEM textbooks influences girls’ achievement in STEM activities will increase children’s likelihood of attributing gender disparities in STEM achievement to structural factors.
-Grounded in social identity and stereotype threat theories, such exposure helps children view gender disparities as societal barriers rather than personal limitations, reducing stereotype threat and fostering belonging [@master_2021_gender; @kimetal_2018_developing].
 
 ## Psychological Mechanisms Underlying Gender Stereotypes in STEM
 
@@ -76,8 +70,20 @@ Instead, they are part of a group facing societal bias, fostering a sense of bel
 ## The Impact of Female Representation on STEM Engagement
 
 Exposing girls to female representation in STEM can significantly enhance their motivation to pursue STEM careers and reduce gender biases.
-@kongetal_2020_reducing finds that diverse STEM female figures in media and educational settings foster a positive association of women with STEM fields from an early age. 
-Moreover, encounters with female scientists can increase girls' STEM aspirations and counteract stereotypes [@bredaetal_2023_how; @master_2021_gender; @gonzalez-perezetal_2020_girls]
+@kongetal_2020_reducing finds that diverse STEM female figures in media and educational settings foster a positive association of women with STEM fields from an early age.
+Moreover, encounters with female scientists can increase girls' STEM aspirations and counteract stereotypes [@bredaetal_2023_how; @master_2021_gender; @gonzalez-perezetal_2020_girls].
+
+## Current Study
+
+Despite increasing efforts to promote gender equity in STEM, girls continue to encounter significant barriers.
+While much of the literature focuses on how female representation influences participation and aspiration in STEM, one often overlooked factor is its impact on how children attribute gender disparities in STEM achievements—whether they view them as rooted in personal limitations or structural barriers.
+My research contributes to the literature by addressing this gap and investigating how exposure to different representations of scientists in educational materials influences children’s reasoning about gender disparities.
+This study is significant because, by uncovering how such exposure shapes their interpretations, it can inform interventions designed to challenge stereotypes and empower girls to envision themselves as successful participants in STEM fields.
+
+How does exposure to structural information, such as the gender of scientists in STEM textbooks, impact children's structural reasoning about gender-based disparities in STEM achievement?
+We hypothesize that exposure to structural information demonstrating that the gender of scientists in STEM textbooks influences girls’ achievement in STEM activities will increase children’s likelihood of attributing gender disparities in STEM achievement to structural factors.
+Grounded in social identity and stereotype threat theories, such exposure helps children view gender disparities as societal barriers rather than personal limitations, reducing stereotype threat and fostering belonging [@kimetal_2018_developing; @master_2021_gender].
+Alternatively, if no effect is found, it may suggest that representation alone is insufficient and that additional factors, such as direct interactions, long-term exposure, or explicit discussions, are needed to challenge stereotypes and promote structural reasoning.
 
 # Method
 
@@ -107,7 +113,7 @@ After each scenario, open-ended questions will prompt them to explain why no gir
 # Results
 
 ```{r}
-#| label: Set up
+#| label: Set-up
 #| include: false
 
 #install.packages("dplyr")
@@ -141,7 +147,7 @@ library(flextable)
 ```
 
 ```{r}
-#| label: Analysis preferences
+#| label: Analysis-preferences
 #| include: false
 
 # Seed for random number generation
@@ -194,10 +200,12 @@ calculate_numeric_summary <- function(df, column) {
 calculate_numeric_summary(data, "AgeYears")
 ```
 
-The dataset includes `r nrow(data)` participants, with ages ranging from `r min(data$AgeYears, na.rm = TRUE)` to `r max(data$AgeYears, na.rm = TRUE)` years. The average age of participants is `r round(mean(data$AgeYears, na.rm = TRUE), 2)` years (SD = `r round(sd(data$AgeYears, na.rm = TRUE), 2)`), and the median age is `r median(data$AgeYears, na.rm = TRUE)` years. See @tbl-Descriptive-Statistics-Numeric for a full summary of the data.
+The dataset includes `r nrow(data)` participants, with ages ranging from `r min(data$AgeYears, na.rm = TRUE)` to `r max(data$AgeYears, na.rm = TRUE)` years.
+The average age of participants is `r round(mean(data$AgeYears, na.rm = TRUE), 2)` years (SD = `r round(sd(data$AgeYears, na.rm = TRUE), 2)`), and the median age is `r median(data$AgeYears, na.rm = TRUE)` years.
+See @tbl-Descriptive-Statistics-Numeric for a full summary of the data.
 
 ```{r}
-#| label: Descriptive Statistics Numeric Example 2
+#| label: Descriptive-Statistics-Numeric2
 #| include: false
 
 # Usage in the second context
@@ -222,12 +230,14 @@ non_numeric_summary %>%
   flextable::flextable() %>%
   flextable::theme_apa()
 ```
-The dataset includes `r sum(non_numeric_summary$Count)` participants. In the Baseline condition, `r non_numeric_summary$Count[non_numeric_summary$Condition == "Baseline"]` participants were included, making up `r round(non_numeric_summary$"Proportion (%)"[non_numeric_summary$Condition == "Baseline"], 2)`% of the sample. In the Between condition, `r non_numeric_summary$Count[non_numeric_summary$Condition == "Between"]` participants were included, representing `r round(non_numeric_summary$"Proportion (%)"[non_numeric_summary$Condition == "Between"], 2)`% of the total sample. Finally, in the Within condition, `r non_numeric_summary$Count[non_numeric_summary$Condition == "Within"]` participants were included, comprising `r round(non_numeric_summary$"Proportion (%)"[non_numeric_summary$Condition == "Within"], 2)`% of the dataset. See @tbl-Descriptive-Statistics-Non-numeric for a full summary of the data.  
+
+The dataset includes `r sum(non_numeric_summary$Count)` participants.
+In the Baseline condition, `r non_numeric_summary$Count[non_numeric_summary$Condition == "Baseline"]` participants were included, making up `r round(non_numeric_summary$"Proportion (%)"[non_numeric_summary$Condition == "Baseline"], 2)`% of the sample. In the Between condition, `r non_numeric_summary$Count[non_numeric_summary$Condition == "Between"]` participants were included, representing `r round(non_numeric_summary$"Proportion (%)"[non_numeric_summary$Condition == "Between"], 2)`% of the total sample. Finally, in the Within condition, `r non_numeric_summary$Count[non_numeric_summary$Condition == "Within"]` participants were included, comprising `r round(non_numeric_summary$"Proportion (%)"[non_numeric_summary$Condition == "Within"], 2)`% of the dataset. See @tbl-Descriptive-Statistics-Non-numeric for a full summary of the data.
 
 ## Robot Building Open-ended Questions
 
 ```{r}
-#| label: Chi-Sqaure Test for Robot
+#| label: analysis-chi2-robot
 #| include: false
 
 #Chi-Square Test
@@ -241,7 +251,7 @@ print(results_table)
 ```
 
 ```{r}
-#| label: Open Ended Explanations Measure robot
+#| label: Open-Ended-Robot
 #| include: false
 
 # Figures for Open-Ended Explanations Measure
@@ -290,7 +300,9 @@ ggplot(table, aes(fill = Explanation_Type, y = value, x = Condition)) +
 
 The Chi-Square test for condition and open-ended questions in the robot-building scenario showed a significant association, χ²(`r round(chisq_test_1$parameter, 2)`) = `r round(chisq_test_1$statistic, 2)`, p = `r formatC(chisq_test_1$p.value, format = "f", digits = 3)`, indicating that participants' responses in the robot open-ended category varied significantly across conditions.
 
-As illustrated in @fig-robot-plot, children in the Baseline condition predominantly provided Intrinsic Explanations, while those in the Between and Within conditions showed a notable shift toward Structural Explanations. Specifically, Intrinsic Explanations decreased in the Between and Within conditions, whereas Structural Explanations increased substantially in the Within condition. This pattern suggests that exposure to structural information in the Within condition influenced children's reasoning, leading them to attribute outcomes to structural factors rather than intrinsic ones.
+As illustrated in @fig-robot-plot, children in the Baseline condition predominantly provided Intrinsic Explanations, while those in the Between and Within conditions showed a notable shift toward Structural Explanations.
+Specifically, Intrinsic Explanations decreased in the Between and Within conditions, whereas Structural Explanations increased substantially in the Within condition.
+This pattern suggests that exposure to structural information in the Within condition influenced children's reasoning, leading them to attribute outcomes to structural factors rather than intrinsic ones.
 
 ## Puzzle Solving Open-ended Questions
 
@@ -309,9 +321,8 @@ results_table2 <- data.frame(
 print(results_table2)
 ```
 
-
 ```{r}
-#| label: Open Ended Explanations Measure puzzle
+#| label: Open-Ended-puzzle
 #| include: false
 
 # Figures for Open-Ended Explanations Measure
@@ -349,16 +360,15 @@ ggplot(table, aes(fill=Explanation_Type, y=value, x=Condition)) +
   theme_bw()
 ```
 
-In contrast, the Chi-Square test for condition and open-ended questions for the puzzle-solving scenario did not show significant results, 
-χ²(`r round(chisq_test_2$parameter, 2)`) = `r round(chisq_test_2$statistic, 2)`, p = `r formatC(chisq_test_2$p.value, format = "f", digits = 3)`, 
-suggesting that responses in the puzzle open-ended category were not significantly different across conditions.
+In contrast, the Chi-Square test for condition and open-ended questions for the puzzle-solving scenario did not show significant results, χ²(`r round(chisq_test_2$parameter, 2)`) = `r round(chisq_test_2$statistic, 2)`, p = `r formatC(chisq_test_2$p.value, format = "f", digits = 3)`, suggesting that responses in the puzzle open-ended category were not significantly different across conditions.
 
-@fig-puzzle-plot illustrates that children do not appear to generalize their reasoning from the robot-building task to the puzzle-solving domain. Intrinsic Explanations remain the most common across all conditions, and structural explanations are present in baseline condition as well.
+@fig-puzzle-plot illustrates that children do not appear to generalize their reasoning from the robot-building task to the puzzle-solving domain.
+Intrinsic Explanations remain the most common across all conditions, and structural explanations are present in baseline condition as well.
 
 ## Robot Building Closed-ended Questions
 
 ```{r}
-#| label: Closed ended Questions 
+#| label: Closed-ended-reshaping
 #| include: False
 data <- data %>%
   mutate(ID = row_number())  
@@ -405,7 +415,11 @@ data$puzzle_control <-replace(data$puzzle_control, data$puzzle_control_r == "Rea
 data$puzzle_control <-replace(data$puzzle_control, data$puzzle_control_r == "A little right", 3)
 data$puzzle_control <-replace(data$puzzle_control, data$puzzle_control_nr == "A little not right", 2)
 data$puzzle_control <-replace(data$puzzle_control, data$puzzle_control_nr == "Really not right", 1)
+```
 
+```{r}
+#| label: Closed-ended-robot
+#| include: False
 df.1.ratings <- data %>%
   pivot_longer(cols = c(robot_structural, robot_ability, robot_interest, robot_control),
                names_to = "explanation",
@@ -417,7 +431,7 @@ df.1.ratings$explanation <- factor(df.1.ratings$explanation,
 ```
 
 ```{r}
-#| label: Linear Regression
+#| label: analysis-LM
 #| include: False
 
 # structural
@@ -431,6 +445,34 @@ summary(linear.abil)
 # interest
 linear.inter <- lm(robot_interest ~ Condition, data = data)
 summary(linear.inter)
+
+# Create a results table
+lm_table <- data.frame(
+  "Explanation" = c("Structural", "Ability", "Interest"),
+  "Beta" = round(c(
+    summary(linear.struc)$coefficients[2, 1],
+    summary(linear.abil)$coefficients[2, 1],
+    summary(linear.inter)$coefficients[2, 1]
+  ), 3),
+  "SE" = round(c(
+    summary(linear.struc)$coefficients[2, 2],
+    summary(linear.abil)$coefficients[2, 2],
+    summary(linear.inter)$coefficients[2, 2]
+  ), 3),
+  "t" = round(c(
+    summary(linear.struc)$coefficients[2, 3],
+    summary(linear.abil)$coefficients[2, 3],
+    summary(linear.inter)$coefficients[2, 3]
+  ), 3),
+  "p-value" = signif(c(
+    summary(linear.struc)$coefficients[2, 4],
+    summary(linear.abil)$coefficients[2, 4],
+    summary(linear.inter)$coefficients[2, 4]
+  ), 3)
+)
+
+# Print the table
+print(lm_table)
 
 ```
 
@@ -471,14 +513,17 @@ geom_point(aes(x = Condition, y = rating, group = explanation),
 
 ```
 
-The linear regression analyses for the robot-building closed-ended questions indicated no significant differences across conditions in children's explanations.For structural explanations, the model did not show a significant effect of condition, β = `r round(summary(linear.struc)$coefficients[3,1], 2)`, SE = `r round(summary(linear.struc)$coefficients[3,2], 2)`, t(`r round(summary(linear.struc)$coefficients[3,3], 2)`) = `r round(summary(linear.struc)$coefficients[3,4], 3)`, p = `r formatC(summary(linear.struc)$coefficients[3,4], format = "f", digits = 3)`, suggesting that ratings of structural explanations did not significantly differ in the Within condition. For ability explanations, the Within condition also did not show a significant effect, β = `r round(summary(linear.abil)$coefficients[3,1], 2)`, SE = `r round(summary(linear.abil)$coefficients[3,2], 2)`, t(`r round(summary(linear.abil)$coefficients[3,3], 2)`) = `r round(summary(linear.abil)$coefficients[3,4], 3)`, p = `r formatC(summary(linear.abil)$coefficients[3,4], format = "f", digits = 3)`. For interest explanations, there was a marginal effect in the Within condition, β = `r round(summary(linear.inter)$coefficients[3,1], 2)`, SE = `r round(summary(linear.inter)$coefficients[3,2], 2)`, t(`r round(summary(linear.inter)$coefficients[3,3], 2)`) = `r round(summary(linear.inter)$coefficients[3,4], 3)`, p = `r formatC(summary(linear.inter)$coefficients[3,4], format = "f", digits = 3)`, indicating a potential trend toward lower interest ratings in the Within condition, though it did not reach statistical significance.
+The linear regression analyses for the robot-building closed-ended questions indicated no significant differences across conditions in children's explanations.For structural explanations, the model did not show a significant effect of condition, β = `r round(summary(linear.struc)$coefficients[3,1], 2)`, SE = `r round(summary(linear.struc)$coefficients[3,2], 2)`, t(`r round(summary(linear.struc)$coefficients[3,3], 2)`) = `r round(summary(linear.struc)$coefficients[3,4], 3)`, p = `r formatC(summary(linear.struc)$coefficients[3,4], format = "f", digits = 3)`, suggesting that ratings of structural explanations did not significantly differ in the Within condition.
+For ability explanations, the Within condition also did not show a significant effect, β = `r round(summary(linear.abil)$coefficients[3,1], 2)`, SE = `r round(summary(linear.abil)$coefficients[3,2], 2)`, t(`r round(summary(linear.abil)$coefficients[3,3], 2)`) = `r round(summary(linear.abil)$coefficients[3,4], 3)`, p = `r formatC(summary(linear.abil)$coefficients[3,4], format = "f", digits = 3)`.
+For interest explanations, there was a marginal effect in the Within condition, β = `r round(summary(linear.inter)$coefficients[3,1], 2)`, SE = `r round(summary(linear.inter)$coefficients[3,2], 2)`, t(`r round(summary(linear.inter)$coefficients[3,3], 2)`) = `r round(summary(linear.inter)$coefficients[3,4], 3)`, p = `r formatC(summary(linear.inter)$coefficients[3,4], format = "f", digits = 3)`, indicating a potential trend toward lower interest ratings in the Within condition, though it did not reach statistical significance.
 
-As illustrated in @fig-Bar-graph-robot, the Within condition showed a slight increase in structural explanations compared to Baseline and Between conditions, but this effect was not statistically significant. Ratings of intrinsic-ability and intrinsic-interest explanations decreased in the Within condition, though it did not reach statistical significance.
+As illustrated in @fig-Bar-graph-robot, the Within condition showed a slight increase in structural explanations compared to Baseline and Between conditions, but this effect was not statistically significant.
+Ratings of intrinsic-ability and intrinsic-interest explanations decreased in the Within condition, though it did not reach statistical significance.
 
 ## Puzzle Solving Closed-ended Questions
 
 ```{r}
-#| label: puzzle-solving
+#| label: close-ended-puzzle
 #| include: false
 
 #Puzzle-solving close-ended questions
@@ -532,25 +577,50 @@ ggplot(df.2.ratings, aes(x = Condition, y = rating, group = explanation, fill = 
 
 ```
 
-The overall pattern of explanation types appears similar to the robot-building scenario. As illustrated in @fig-Bar-graph-puzzle, structural explanations showed a slight increase in the Within condition compared to Baseline and Between conditions, while intrinsic-ability and intrinsic-interest explanations remained relatively stable across conditions.
+The overall pattern of explanation types appears similar to the robot-building scenario.
+As illustrated in @fig-Bar-graph-puzzle, structural explanations showed a slight increase in the Within condition compared to Baseline and Between conditions, while intrinsic-ability and intrinsic-interest explanations remained relatively stable across conditions.
 
 # Discussion
 
-Overall, structural explanations increased in the Within condition across both open- and closed-ended questions, while intrinsic explanations decreased in the Between and Within conditions compared to the Baseline. Notably, both the increase in structural explanations and the decline in intrinsic explanations were more pronounced in the Within condition.
+Overall, structural explanations increased in the Within condition across both open- and closed-ended questions, while intrinsic explanations decreased in the Between and Within conditions compared to the Baseline.
+Notably, both the increase in structural explanations and the decline in intrinsic explanations were more pronounced in the Within condition.
 
-Interestingly, children appeared to apply structural reasoning in closed-ended questions more consistently than in open-ended questions, potentially extending it from the robot-building scenario to the puzzle-solving domain. However, given the lack of statistical significance, this should be interpreted cautiously as a possible trend rather than definitive evidence of generalization.
+Interestingly, children appeared to apply structural reasoning in closed-ended questions more consistently than in open-ended questions, potentially extending it from the robot-building scenario to the puzzle-solving domain.
+However, given the lack of statistical significance, this should be interpreted cautiously as a possible trend rather than definitive evidence of generalization.
 
-Additionally, structural explanations were present in the puzzle-solving scenario, which was always presented as the Baseline condition. This raises potential methodological concerns.Since all participants engaged in closed-ended questions about robot building—which included structural explanations—before completing the puzzle-solving scenario, it is possible that children recalled these structural explanations and reused them when responding to subsequent questions.This could be a limitation in the study design, as prior exposure to structural reasoning may have influenced children's responses across conditions.
+Additionally, structural explanations were present in the puzzle-solving scenario, which was always presented as the Baseline condition.
+This raises potential methodological concerns.Since all participants engaged in closed-ended questions about robot building—which included structural explanations—before completing the puzzle-solving scenario, it is possible that children recalled these structural explanations and reused them when responding to subsequent questions.This could be a limitation in the study design, as prior exposure to structural reasoning may have influenced children's responses across conditions.
 
 In sum, my research addresses a critical gap in the literature by examining how exposure to representations of female scientists in educational materials shapes children’s reasoning about gender disparities in STEM achievements—a topic that, to my knowledge, has not been explored.
 By shedding light on how children’s reasoning about these disparities can be influenced, this study offers valuable insights for fostering a more equitable future in STEM fields.
 
+\newpage
+
+# References
+
+<!-- References will auto-populate in the refs div below -->
+
+::: {#refs}
+:::
+
 # Appendix
 
+I created 5 code chunks that are not necessarily related to the final report; however, these chunks demonstrate **Learning Objectives**: *6,8,11,15,27*. The two graphs presented below are the graphs created using facet_wrap and facet_grid, achieving LO: 15.^[Demonstration of LO 6, 8, and 11 can be found in the Structural Thinking.qmd file in the code chunks: Str(), Operators, and Conditional-statements.]
+
+-   **Learning Objectives:**
+    -   6: Use arithmetic, comparison, and logical operators\
+    -   8: Parse and write conditional statements and/or loops\
+    -   11: Use `stringr` functions to work with string variables\
+    -   15: Use facets to create parallel plots\
+    -   27: Use quarto R Markdown to compose an academic manuscript
+
 ```{r}
-#| label: name of the plot!
-#| include: false
-# Histogram : facet_wrap
+#| label: fig-age-condition
+#| fig-cap: 'Age Distribution by Condition' 
+#| fig-height: 4  
+#| fig-width: 6  
+#| echo: false
+
 ggplot(data, aes(x = AgeYears)) +
   geom_histogram(binwidth = 1, fill = "lightblue", color = "black") +
   facet_wrap(~ Condition, scales = "free") +
@@ -559,7 +629,12 @@ ggplot(data, aes(x = AgeYears)) +
 ```
 
 ```{r}
-# Histogram : facet_grid
+#| label: fig-age-condition-gender
+#| fig-cap: 'Age Distribution by Condition and Gender' 
+#| fig-height: 4  
+#| fig-width: 6  
+#| echo: false
+
 ggplot(data, aes(x = AgeYears)) +
   geom_histogram(binwidth = 1, fill = "lightblue", color = "black") +
   facet_grid(Condition ~ Gender, scales = "free") +  
@@ -569,7 +644,7 @@ ggplot(data, aes(x = AgeYears)) +
 ```
 
 ```{r}
-#| label: Using str() for LO:11
+#| label: Str()
 #| include: false
 
 # Data transformation pipeline with stringr functions
@@ -582,7 +657,7 @@ print(data_summary)
 ```
 
 ```{r}
-#| label: Using operators for LO:6
+#| label: Operators
 #| include: false
 
 # Use arithmetic, comparison, and logical operators
@@ -597,7 +672,7 @@ print(data_operators %>% select(AgeYears, Condition, Age_Same, Is_Older_Than_6, 
 ```
 
 ```{r}
-#| label: Using conditional statements/loops for LO:8
+#| label: Conditional-Statements
 #| include: false
 
 # Conditional statement: Categorize age groups 
@@ -611,11 +686,3 @@ data_operators <- data_operators %>%
   ) #this should produce "Yes" since the age range for this study is 5-8
 print(data_operators %>% select(AgeYears, Age_Group, Is_Child))
 ```
-
-\newpage
-# References
-
-<!-- References will auto-populate in the refs div below -->
-
-::: {#refs}
-:::

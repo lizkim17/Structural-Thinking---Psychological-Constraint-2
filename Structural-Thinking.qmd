@@ -110,6 +110,7 @@ Then, the puzzle-solving competition, included as a baseline condition, will be 
 
 After each scenario, open-ended questions will prompt them to explain why no girls won in the last year, and closed-ended questions will ask them to evaluate intrinsic, random, and structural explanations provided by fictional characters as accurate or inaccurate.
 
+\newpage
 # Results
 
 ```{r}
@@ -179,7 +180,7 @@ data <- read_csv("ST-P 2 Dataset Final.csv")
 #| echo: false
 #| tbl-cap:  Summary statistics for a numeric variable (Age)
 
-# Compute summary statistics
+# Compute summary statistics using a function
 calculate_numeric_summary <- function(df, column) {
   summary_df <- df %>%
     summarise(
@@ -200,8 +201,7 @@ calculate_numeric_summary <- function(df, column) {
 calculate_numeric_summary(data, "AgeYears")
 ```
 
-The dataset includes `r nrow(data)` participants, with ages ranging from `r min(data$AgeYears, na.rm = TRUE)` to `r max(data$AgeYears, na.rm = TRUE)` years.
-The average age of participants is `r round(mean(data$AgeYears, na.rm = TRUE), 2)` years (SD = `r round(sd(data$AgeYears, na.rm = TRUE), 2)`), and the median age is `r median(data$AgeYears, na.rm = TRUE)` years.
+The dataset includes `r nrow(data)` participants, with ages ranging from `r min(data$AgeYears, na.rm = TRUE)` to `r max(data$AgeYears, na.rm = TRUE)` years. The average age of participants is *M* = `r round(mean(data$AgeYears, na.rm = TRUE), 2)` years (*SD* = `r round(sd(data$AgeYears, na.rm = TRUE), 2)`), and the median age is *Mdn* = `r median(data$AgeYears, na.rm = TRUE)` years.
 See @tbl-Descriptive-Statistics-Numeric for a full summary of the data.
 
 ```{r}
@@ -231,13 +231,12 @@ non_numeric_summary %>%
   flextable::theme_apa()
 ```
 
-The dataset includes `r sum(non_numeric_summary$Count)` participants.
 In the Baseline condition, `r non_numeric_summary$Count[non_numeric_summary$Condition == "Baseline"]` participants were included, making up `r round(non_numeric_summary$"Proportion (%)"[non_numeric_summary$Condition == "Baseline"], 2)`% of the sample. In the Between condition, `r non_numeric_summary$Count[non_numeric_summary$Condition == "Between"]` participants were included, representing `r round(non_numeric_summary$"Proportion (%)"[non_numeric_summary$Condition == "Between"], 2)`% of the total sample. Finally, in the Within condition, `r non_numeric_summary$Count[non_numeric_summary$Condition == "Within"]` participants were included, comprising `r round(non_numeric_summary$"Proportion (%)"[non_numeric_summary$Condition == "Within"], 2)`% of the dataset. See @tbl-Descriptive-Statistics-Non-numeric for a full summary of the data.
 
 ## Robot Building Open-ended Questions
 
 ```{r}
-#| label: analysis-chi2-robot
+#| label: Analysis-chi2-robot
 #| include: false
 
 #Chi-Square Test
@@ -282,13 +281,12 @@ table <- table %>%
 #| fig-cap: "Robot Building Open-Ended Explanations: Explanation Types by Condition"
 #| fig-height: 4  
 #| fig-width: 6  
-#| apa-note: "Stacked bar chart displaying the percentage of children providing each type of explanation across three experimental conditions: Baseline, Between, and Within. The y-axis represents the proportion of children giving each explanation type, while the x-axis represents the experimental condition. Explanation types are color-coded as follows: Intrinsic (pink), Structural (blue), Extrinsic (purple), Other (light gray), and Structural+Intrinsic (red)."
-
+#| apa-note: "Stacked bar chart displaying the percentage of children providing each type of explanation across three experimental conditions: Baseline, Between, and Within. The y-axis represents the proportion of children giving each explanation type, while the x-axis represents the experimental condition."
 
 # Stacked bar plot
 ggplot(table, aes(fill = Explanation_Type, y = value, x = Condition)) + 
   geom_bar(position = "fill", stat = "identity") +
-  labs(y = "Percent of Children Gave Explanation", x = "Condition") +
+  labs(y = "Percentage of Children Providing Explanation", x = "Condition", fill = "Explanation") +
   scale_fill_manual(values = c("Intrinsic Explanations" = "#FBB4AE",
                                "Structural Explanations" = "#1F78B4",
                                "Other Explanations" = "#F2F2F2",
@@ -298,16 +296,14 @@ ggplot(table, aes(fill = Explanation_Type, y = value, x = Condition)) +
 
 ```
 
-The Chi-Square test for condition and open-ended questions in the robot-building scenario showed a significant association, χ²(`r round(chisq_test_1$parameter, 2)`) = `r round(chisq_test_1$statistic, 2)`, p = `r formatC(chisq_test_1$p.value, format = "f", digits = 3)`, indicating that participants' responses in the robot open-ended category varied significantly across conditions.
+The Chi-Square test for condition and open-ended questions in the robot-building scenario showed a significant results, *χ²*(`r round(chisq_test_1$parameter, 2)`) = `r round(chisq_test_1$statistic, 2)`, *p* = `r formatC(chisq_test_1$p.value, format = "f", digits = 3)`, indicating that participants' responses in the robot open-ended category varied significantly across conditions.
 
-As illustrated in @fig-robot-plot, children in the Baseline condition predominantly provided Intrinsic Explanations, while those in the Between and Within conditions showed a notable shift toward Structural Explanations.
-Specifically, Intrinsic Explanations decreased in the Between and Within conditions, whereas Structural Explanations increased substantially in the Within condition.
-This pattern suggests that exposure to structural information in the Within condition influenced children's reasoning, leading them to attribute outcomes to structural factors rather than intrinsic ones.
+As illustrated in @fig-robot-plot, children in the Baseline condition predominantly provided intrinsic explanations. Intrinsic explanations decrease in the Between and Within conditions, particularly in the Within condition. Structural explanations are present in the Between condition and show a substantial increase in the Within condition. This pattern suggests that exposure to structural information in the Between and Within conditions influenced children's reasoning, leading them to attribute outcomes to structural factors rather than intrinsic ones. Furthermore, the Within condition appears to be more effective in increasing structural explanations.
 
 ## Puzzle Solving Open-ended Questions
 
 ```{r}
-#| label: analysis-chi2-puzzle
+#| label: Analysis-chi2-puzzle
 #| include: false
 
 #Chi-Square Test
@@ -347,12 +343,12 @@ table$Explanation_Type<- with(table, factor(Explanation_Type, levels=c("Intrinsi
 #| fig-cap: 'Puzzle Solving Open-Ended Explanations: Explanation Types by Condition' 
 #| fig-height: 4  
 #| fig-width: 6  
-#| apa-note: "Stacked bar chart displaying the percentage of children providing each type of explanation across three experimental conditions: Baseline, Between, and Within. The y-axis represents the proportion of children giving each explanation type, while the x-axis represents the experimental condition. Explanation types are color-coded as follows: Intrinsic (pink), Structural (blue), Extrinsic (purple), Other (light gray), and NA (dark gray)."
+#| apa-note: "Stacked bar chart displaying the percentage of children providing each type of explanation across three experimental conditions: Baseline, Between, and Within. The y-axis represents the proportion of children giving each explanation type, while the x-axis represents the experimental condition."
 
 #Bar graph
 ggplot(table, aes(fill=Explanation_Type, y=value, x=Condition)) + 
-  geom_bar(position="fill", stat="identity", aes(fill=Explanation_Type))+
-  labs(y="Percent of Children Gave Explanation", x="Condition")+
+  geom_bar(position="fill", stat="identity")+
+  labs(y="Percentage of Children Providing Explanation", x="Condition", fill="Explanation")+
   scale_fill_manual(values = c("Intrinsic" = "#FBB4AE",
                                "Structural"="#1F78B4",
                                "Extrinsic"="plum",
@@ -360,10 +356,9 @@ ggplot(table, aes(fill=Explanation_Type, y=value, x=Condition)) +
   theme_bw()
 ```
 
-In contrast, the Chi-Square test for condition and open-ended questions for the puzzle-solving scenario did not show significant results, χ²(`r round(chisq_test_2$parameter, 2)`) = `r round(chisq_test_2$statistic, 2)`, p = `r formatC(chisq_test_2$p.value, format = "f", digits = 3)`, suggesting that responses in the puzzle open-ended category were not significantly different across conditions.
+In contrast, the Chi-Square test for condition and open-ended questions for the puzzle-solving scenario did not show significant results, *χ²*(`r round(chisq_test_2$parameter, 2)`) = `r round(chisq_test_2$statistic, 2)`, *p* = `r formatC(chisq_test_2$p.value, format = "f", digits = 3)`, indicating that responses in the puzzle open-ended category were not significantly different across conditions.
 
-@fig-puzzle-plot illustrates that children do not appear to generalize their reasoning from the robot-building task to the puzzle-solving domain.
-Intrinsic Explanations remain the most common across all conditions, and structural explanations are present in baseline condition as well.
+As illustrated in @fig-puzzle-plot, children do not appear to generalize their reasoning from the robot-building task to the puzzle-solving domain. Intrinsic Explanations remain the most common across all conditions, and structural explanations are present in all conditions. 
 
 ## Robot Building Closed-ended Questions
 
@@ -431,7 +426,7 @@ df.1.ratings$explanation <- factor(df.1.ratings$explanation,
 ```
 
 ```{r}
-#| label: analysis-LM
+#| label: Analysis-LM-Robot
 #| include: False
 
 # structural
@@ -481,7 +476,7 @@ print(lm_table)
 #| fig-cap: 'Robot Building Close-Ended Explanations: Explanation Types by Condition' 
 #| fig-height: 4  
 #| fig-width: 6  
-#| apa-note: "Bar graph displaying the mean rating of explanations provided by children across three experimental conditions: Baseline, Between, and Within. The y-axis represents the mean rating of each explanation type, while the x-axis represents the experimental condition. Error bars indicate standard errors. Explanation types are color-coded as follows: Structural (blue), Intrinsic-ability (pink), Intrinsic-interest (light pink), and Random (gray)."
+#| apa-note: "Bar graph displaying the mean rating of explanations provided by children across three experimental conditions: Baseline, Between, and Within. The y-axis represents the mean rating of each explanation type, while the x-axis represents the experimental condition. Error bars indicate standard errors."
 
 ggplot(df.1.ratings, aes(x = Condition, y = rating, group = explanation, fill = explanation)) +
   geom_bar(stat = "summary", position = "dodge", color = "black") +
@@ -513,17 +508,14 @@ geom_point(aes(x = Condition, y = rating, group = explanation),
 
 ```
 
-The linear regression analyses for the robot-building closed-ended questions indicated no significant differences across conditions in children's explanations.For structural explanations, the model did not show a significant effect of condition, β = `r round(summary(linear.struc)$coefficients[3,1], 2)`, SE = `r round(summary(linear.struc)$coefficients[3,2], 2)`, t(`r round(summary(linear.struc)$coefficients[3,3], 2)`) = `r round(summary(linear.struc)$coefficients[3,4], 3)`, p = `r formatC(summary(linear.struc)$coefficients[3,4], format = "f", digits = 3)`, suggesting that ratings of structural explanations did not significantly differ in the Within condition.
-For ability explanations, the Within condition also did not show a significant effect, β = `r round(summary(linear.abil)$coefficients[3,1], 2)`, SE = `r round(summary(linear.abil)$coefficients[3,2], 2)`, t(`r round(summary(linear.abil)$coefficients[3,3], 2)`) = `r round(summary(linear.abil)$coefficients[3,4], 3)`, p = `r formatC(summary(linear.abil)$coefficients[3,4], format = "f", digits = 3)`.
-For interest explanations, there was a marginal effect in the Within condition, β = `r round(summary(linear.inter)$coefficients[3,1], 2)`, SE = `r round(summary(linear.inter)$coefficients[3,2], 2)`, t(`r round(summary(linear.inter)$coefficients[3,3], 2)`) = `r round(summary(linear.inter)$coefficients[3,4], 3)`, p = `r formatC(summary(linear.inter)$coefficients[3,4], format = "f", digits = 3)`, indicating a potential trend toward lower interest ratings in the Within condition, though it did not reach statistical significance.
+The linear regression analyses for the robot-building closed-ended questions indicated no significant differences across conditions in children's explanations. For structural explanations, the model did not show a significant effect of condition, *β* = `r round(summary(linear.struc)$coefficients[2, 1], 2)`, *SE* = `r round(summary(linear.struc)$coefficients[2, 2], 2)`, *t*(`r summary(linear.struc)$df[2]`) = `r round(summary(linear.struc)$coefficients[2, 3], 2)`, *p* = `r formatC(summary(linear.struc)$coefficients[2, 4], format = "f", digits = 3)`, suggesting that ratings of structural explanations did not significantly differ in the Within condition. For ability explanations, the Within condition also did not show a significant effect, *β* = `r round(summary(linear.abil)$coefficients[2, 1], 2)`, *SE* = `r round(summary(linear.abil)$coefficients[2, 2], 2)`, *t*(`r summary(linear.abil)$df[2]`) = `r round(summary(linear.abil)$coefficients[2, 3], 2)`, *p* = `r formatC(summary(linear.abil)$coefficients[2, 4], format = "f", digits = 3)`. For interest explanations, there was a nonsignificant trend in the Within condition, *β* = `r round(summary(linear.inter)$coefficients[2, 1], 2)`, *SE* = `r round(summary(linear.inter)$coefficients[2, 2], 2)`, *t*(`r summary(linear.inter)$df[2]`) = `r round(summary(linear.inter)$coefficients[2, 3], 2)`, *p* = `r formatC(summary(linear.inter)$coefficients[2, 4], format = "f", digits = 3)`, indicating a potential trend toward lower interest ratings in the Within condition, though it did not reach statistical significance.
 
-As illustrated in @fig-Bar-graph-robot, the Within condition showed a slight increase in structural explanations compared to Baseline and Between conditions, but this effect was not statistically significant.
-Ratings of intrinsic-ability and intrinsic-interest explanations decreased in the Within condition, though it did not reach statistical significance.
+As illustrated in @fig-Bar-graph-robot, the Within condition showed a slight increase in structural explanations compared to Baseline and Between conditions, but this effect was not statistically significant. Ratings of intrinsic-ability and intrinsic-interest explanations decreased in the Within condition, though it did not reach statistical significance.
 
 ## Puzzle Solving Closed-ended Questions
 
 ```{r}
-#| label: close-ended-puzzle
+#| label: Close-ended-puzzle
 #| include: false
 
 #Puzzle-solving close-ended questions
@@ -541,11 +533,57 @@ df.2.ratings$explanation <- factor(df.2.ratings$explanation,
 ```
 
 ```{r}
+#| label: Analysis-LM-Puzzle
+#| include: False
+
+# Structural
+linear.puzzle.struc <- lm(puzzle_structural ~ Condition, data = data)
+summary(linear.puzzle.struc)
+
+# Ability
+linear.puzzle.abil <- lm(puzzle_ability ~ Condition, data = data)
+summary(linear.puzzle.abil)
+
+# Interest
+linear.puzzle.inter <- lm(puzzle_interest ~ Condition, data = data)
+summary(linear.puzzle.inter)
+
+# Create a results table
+lm_table2 <- data.frame(
+  "Explanation" = c(
+    "Structural", "Intrinsic-ability", "Intrinsic-interest"),
+  "Beta" = round(c(
+    summary(linear.puzzle.struc)$coefficients[2, 1],
+    summary(linear.puzzle.abil)$coefficients[2, 1],
+    summary(linear.puzzle.inter)$coefficients[2, 1]
+  ), 3),
+  "SE" = round(c(
+    summary(linear.puzzle.struc)$coefficients[2, 2],
+    summary(linear.puzzle.abil)$coefficients[2, 2],
+    summary(linear.puzzle.inter)$coefficients[2, 2]
+  ), 3),
+  "t" = round(c(
+    summary(linear.puzzle.struc)$coefficients[2, 3],
+    summary(linear.puzzle.abil)$coefficients[2, 3],
+    summary(linear.puzzle.inter)$coefficients[2, 3]
+  ), 3),
+  "p-value" = signif(c(
+    summary(linear.puzzle.struc)$coefficients[2, 4],
+    summary(linear.puzzle.abil)$coefficients[2, 4],
+    summary(linear.puzzle.inter)$coefficients[2, 4]
+  ), 3)
+)
+
+# Print the table
+print(lm_table2)
+```
+
+```{r}
 #| label: fig-Bar-graph-puzzle
 #| fig-cap: 'Puzzle Solving Close-Ended Explanations: Explanation Types by Condition' 
 #| fig-height: 4  
 #| fig-width: 6  
-#| apa-note: "Bar graph displaying the mean rating of explanations provided by children across three experimental conditions: Baseline, Between, and Within. The y-axis represents the mean rating of each explanation type, while the x-axis represents the experimental condition. Error bars indicate standard errors. Explanation types are color-coded as follows: Structural (blue), Intrinsic-ability (pink), Intrinsic-interest (light pink), and Random (gray)."
+#| apa-note: "Bar graph displaying the mean rating of explanations provided by children across three experimental conditions: Baseline, Between, and Within. The y-axis represents the mean rating of each explanation type, while the x-axis represents the experimental condition. Error bars indicate standard errors."
 
 ggplot(df.2.ratings, aes(x = Condition, y = rating, group = explanation, fill = explanation)) +
     geom_bar(stat = "summary", position = "dodge", color = "black") +
@@ -577,22 +615,19 @@ ggplot(df.2.ratings, aes(x = Condition, y = rating, group = explanation, fill = 
 
 ```
 
-The overall pattern of explanation types appears similar to the robot-building scenario.
-As illustrated in @fig-Bar-graph-puzzle, structural explanations showed a slight increase in the Within condition compared to Baseline and Between conditions, while intrinsic-ability and intrinsic-interest explanations remained relatively stable across conditions.
+The linear regression analyses for the puzzle-solving closed-ended questions indicated no significant differences across conditions in children's explanations. For structural explanations, the model did not show a significant effect of condition, *β* = `r round(summary(linear.puzzle.struc)$coefficients[2, 1], 2)`, *SE* = `r round(summary(linear.puzzle.struc)$coefficients[2, 2], 2)`, *t*(`r summary(linear.puzzle.struc)$df[2]`) = `r round(summary(linear.puzzle.struc)$coefficients[2, 3], 2)`, *p* = `r formatC(summary(linear.puzzle.struc)$coefficients[2, 4], format = "f", digits = 3)`, suggesting that ratings of structural explanations did not significantly differ in the Within condition. For intrinsic-ability explanations, the Within condition also did not show a significant effect, *β* = `r round(summary(linear.puzzle.abil)$coefficients[2, 1], 2)`, *SE* = `r round(summary(linear.puzzle.abil)$coefficients[2, 2], 2)`, *t*(`r summary(linear.puzzle.abil)$df[2]`) = `r round(summary(linear.puzzle.abil)$coefficients[2, 3], 2)`, *p* = `r formatC(summary(linear.puzzle.abil)$coefficients[2, 4], format = "f", digits = 3)`. For intrinsic-interest explanations, there was a nonsignificant trend in the Within condition, *β* = `r round(summary(linear.puzzle.inter)$coefficients[2, 1], 2)`, *SE* = `r round(summary(linear.puzzle.inter)$coefficients[2, 2], 2)`, *t*(`r summary(linear.puzzle.inter)$df[2]`) = `r round(summary(linear.puzzle.inter)$coefficients[2, 3], 2)`, *p* = `r formatC(summary(linear.puzzle.inter)$coefficients[2, 4], format = "f", digits = 3)`, indicating a potential trend toward lower intrinsic-interest ratings in the Within condition, though it did not reach statistical significance.
+
+As illustrated in @fig-Bar-graph-puzzle, structural explanations slightly increase in the Within condition compared to the Baseline and Between conditions, while intrinsic-ability and intrinsic-interest explanations show a slight decrease in the Within condition compared to the Baseline and Between conditions. However, these differences were not statistically significant. The overall pattern of explanation types appears similar to the robot-building scenario.
 
 # Discussion
 
-Overall, structural explanations increased in the Within condition across both open- and closed-ended questions, while intrinsic explanations decreased in the Between and Within conditions compared to the Baseline.
-Notably, both the increase in structural explanations and the decline in intrinsic explanations were more pronounced in the Within condition.
+For the robot-building task, the significant effect in the open-ended responses indicates that children adjusted their explanations based on the condition. The increase in structural explanations in the Within condition suggests that exposure to structural information influenced children's reasoning, encouraging them to shift away from intrinsic explanations. In contrast, the puzzle-solving task did not show significant differences in open-ended responses across conditions, suggesting that children may not generalize structural reasoning from one domain to another. However, the finding that interest explanations showed a marginal effect in the Within condition suggests some potential for influence, even if the effect was not statistically significant.
 
-Interestingly, children appeared to apply structural reasoning in closed-ended questions more consistently than in open-ended questions, potentially extending it from the robot-building scenario to the puzzle-solving domain.
-However, given the lack of statistical significance, this should be interpreted cautiously as a possible trend rather than definitive evidence of generalization.
+The close-ended responses for both the robot and puzzle tasks showed patterns consistent with the open-ended results. While structural explanations increased slightly in the Within condition and intrinsic explanations decreased, these changes were not statistically significant. The similarity in patterns between open- and close-ended responses suggests that the influence of structural information may be emerging but is not yet strong enough to produce consistent effects across domains or response types. The lack of significant effects in the puzzle task indicates that generalization across domains may require stronger or more consistent exposure to structural cues.
 
-Additionally, structural explanations were present in the puzzle-solving scenario, which was always presented as the Baseline condition.
-This raises potential methodological concerns.Since all participants engaged in closed-ended questions about robot building—which included structural explanations—before completing the puzzle-solving scenario, it is possible that children recalled these structural explanations and reused them when responding to subsequent questions.This could be a limitation in the study design, as prior exposure to structural reasoning may have influenced children's responses across conditions.
+Additionally, structural explanations were present in the puzzle-solving scenario for the open-ended questions, which were always presented in the Baseline condition. This raises potential methodological concerns. Since all participants engaged in close-ended questions about robot-building—which included structural explanations—before completing the puzzle-solving scenario, it is possible that children recalled these structural explanations and reused them when responding to subsequent questions. This could be a limitation in the study design, as prior exposure to structural reasoning may have influenced children's responses across conditions.
 
-In sum, my research addresses a critical gap in the literature by examining how exposure to representations of female scientists in educational materials shapes children’s reasoning about gender disparities in STEM achievements—a topic that, to my knowledge, has not been explored.
-By shedding light on how children’s reasoning about these disparities can be influenced, this study offers valuable insights for fostering a more equitable future in STEM fields.
+In sum, this research addresses a critical gap in the literature by examining how exposure to representations of female scientists in educational materials shapes children’s reasoning about gender disparities in STEM achievements—a topic that, to my knowledge, has not been explored. These findings suggest that structural reasoning can be facilitated through targeted exposure to structural information, but such effects may be task-specific. Future interventions aimed at promoting structural reasoning in educational settings should consider the relevance of the task and the consistency of the cues provided. By shedding light on how children’s reasoning about these disparities can be influenced, this study offers valuable insights for fostering a more equitable future in STEM fields.
 
 \newpage
 
@@ -605,7 +640,7 @@ By shedding light on how children’s reasoning about these disparities can be i
 
 # Appendix
 
-I created 5 code chunks that are not necessarily related to the final report; however, these chunks demonstrate **Learning Objectives**: *6,8,11,15,27*. The two graphs presented below are the graphs created using facet_wrap and facet_grid, achieving LO: 15.^[Demonstration of LO 6, 8, and 11 can be found in the Structural Thinking.qmd file in the code chunks: Str(), Operators, and Conditional-statements.]
+I created 5 code chunks that are not necessarily related to the final report; however, these chunks demonstrate **Learning Objectives**: *6,8,11,15,27*. The two graphs, @fig-age-condition and @fig-age-condition-gender, presented below are the graphs created using facet_wrap and facet_grid, achieving LO: 15.^[Demonstration of LO 6, 8, and 11 can be found in the Structural Thinking.qmd file in the code chunks: Str(), Operators, and Conditional-statements.]
 
 -   **Learning Objectives:**
     -   6: Use arithmetic, comparison, and logical operators\

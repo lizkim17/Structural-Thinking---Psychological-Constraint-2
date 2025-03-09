@@ -18,16 +18,22 @@ I submitted a link of a new repo (<https://github.com/lizkim17/Structural-Thinki
 
 # Repo Structure
 
-Structural-Thinking.qmd: Qmd file for the final report of the project.
+-   **\_extensions/wjschne/apaquarto** – Directory containing APA formatting extensions.
 
-Structural-Thinking.pdf: PDF document version of the final report.
+-   **.gitignore** – Specifies files to ignore in version control.
 
-Structural Thinking.Rproj: R Project file for this project.
+-   **Bibliography.bib** – References list for the project.
 
-README.md: File providing brief information about the project.
+-   **README.md** – Provides brief information about the project.
 
-research-assessment.md: Markdown file for project assessment.
+-   **ST-P 2 Dataset Final.csv** – Dataset used for this project.
 
-ST-P 2 Dataset Final.csv: The dataset I am using for this project.
+-   **Structural Thinking.Rproj** – R Project file for this project.
 
-Biliography.bib: References list for the project.
+-   **Structural-Thinking.pdf** – PDF version of the final report.
+
+-   **Structural-Thinking.qmd** – QMD file for the final report.
+
+-   **research-assessment.md** – Markdown file for project assessment.
+
+-   **.DS_Store** & **Structural Thinking - Psychological Constraint 2.Rproj** – Unclear why these files were created or when, but I kept them to avoid potential issues with the project.

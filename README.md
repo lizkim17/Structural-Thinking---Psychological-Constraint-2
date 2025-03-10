@@ -16,7 +16,7 @@ I will use ST-P 2 Dataset Final.csv file, which is the dataset exported from Qua
 
 I submitted a link of a new repo (<https://github.com/lizkim17/Structural-Thinking---Psychological-Constraint-2/tree/main>).
 
-# Repo Structure
+## Repo Structure
 
 -   **\_extensions/wjschne/apaquarto** – Directory containing APA formatting extensions.
 

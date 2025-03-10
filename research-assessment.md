@@ -30,7 +30,7 @@ Section: 1
 
 Research project title: Empowering Girls in STEM: The Role of Female Representation in Shaping Children's Structural Reasoning About Gender Disparities
 
-Submission date: 3/8
+Submission date: 3/10
 
 Submission number (1-4): 2
 
@@ -486,6 +486,8 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
             -   Renders appendix without content
 
 ## Reflection (Optional)
+
+Reflection (Written on 3/10)
 
 Achieving all 30 learning objectives was challenging. However, I overcame this by checking off a few each day and regularly attending office hours. I aimed to attend at least one office hour per week and actively use slack to ask questions and to respond to the classmates' questions. I believe this may earn me high engagement points for proactively seeking help and staying engaged in this class. For a few learning objectives, my implementation was not as coherent since I was primarily focused on demonstrating them. However, I formatted the QMD file as an appendix, utilizing the APA structure in a way that ensures these sections do not disrupt the readability of my final report.
 

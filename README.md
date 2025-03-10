@@ -34,6 +34,6 @@ I submitted a link of a new repo (<https://github.com/lizkim17/Structural-Thinki
 
 -   **Structural-Thinking.qmd** – QMD file for the final report.
 
--   **research-assessment.md** – Markdown file for project assessment.
+-   **research-assessment.md** – Markdown file for the assessment.
 
 -   **.DS_Store** & **Structural Thinking - Psychological Constraint 2.Rproj** – Unclear why these files were created or when, but I kept them to avoid potential issues with the project.

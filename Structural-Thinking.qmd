@@ -25,7 +25,7 @@ author-note:
     financial-support: ~
     gratitude: ~
     authorship-agreements: ~
-abstract: "Gender bias in STEM educational materials remains a significant barrier to gender equity, with textbooks and online resources often underrepresenting female scientists. This study examines whether children recognize the lack of female scientists as a structural barrier in STEM by presenting them with two hypothetical competition scenarios: robot-building and puzzle-solving. In the robot-building scenario, 96 children aged 5–8 children were randomly assigned to one of three conditions varying the representation of male and female scientists in textbooks. Open- and closed-ended questions assess their reasoning about gender disparities, with the puzzle-solving competition serving as a baseline to test generalization. Findings suggest that structural explanations increased and intrinsic explanations decreased in the Within condition, though generalization across domains was inconclusive."
+abstract: "Gender bias in STEM educational materials remains a significant barrier to gender equity, with textbooks and online resources often underrepresenting female scientists. This study examines whether children recognize the lack of female scientists as a structural barrier in STEM by presenting them with two hypothetical competition scenarios: robot-building and puzzle-solving. In the robot-building scenario, 96 children aged 5–8 were randomly assigned to one of three conditions varying the representation of male and female scientists in textbooks. Open- and closed-ended questions assessed their reasoning about gender disparities, with the puzzle-solving competition serving as a baseline to test generalization. Findings suggest that structural explanations increased and intrinsic explanations decreased in the within condition for open-ended robot-building responses. However, a similar pattern was observed for the other conditions, although generalization across domains and closed-ended responses was not significant."
 keywords: [Gender Bias in STEM, Structural Reasoning, Educational Materials]
 bibliography: bibliography.bib
 format:
@@ -300,8 +300,6 @@ The chi-square test for condition and open-ended responses in the robot-building
 
 As illustrated in @fig-robot-plot, children in the Baseline condition predominantly provided intrinsic explanations. Intrinsic explanations decreased in the Between and Within conditions, particularly in the Within condition. Structural explanations were present in the Between condition and showed a substantial increase in the Within condition. This pattern suggests that exposure to structural information in the Between and Within conditions influenced children’s reasoning, leading them to attribute outcomes to structural factors rather than intrinsic ones. Furthermore, the Within condition appears to be more effective in increasing structural explanations.
 
-
-
 ## Puzzle Solving Open-ended Questions
 
 ```{r}
@@ -347,7 +345,7 @@ table$Explanation_Type<- with(table, factor(Explanation_Type, levels=c("Intrinsi
 #| fig-width: 6  
 #| apa-note: "Stacked bar chart displaying the percentage of children providing each type of explanation across three experimental conditions: Baseline, Between, and Within. The y-axis represents the proportion of children giving each explanation type, while the x-axis represents the experimental condition."
 
-#Bar graph
+# Stacked bar plot
 ggplot(table, aes(fill=Explanation_Type, y=value, x=Condition)) + 
   geom_bar(position="fill", stat="identity")+
   labs(y="Percentage of Children Providing Explanation", x="Condition", fill="Explanation")+
@@ -367,11 +365,9 @@ As illustrated in @fig-puzzle-plot, children did not generalize their reasoning 
 ```{r}
 #| label: Closed-ended-reshaping
 #| include: False
+
 data <- data %>%
   mutate(ID = row_number())  
-
-length(unique(data$ID))
-nrow(data)
 
 data$robot_ability <-replace(data$robot_ability, data$robot_ability_r == "Really right", 4)
 data$robot_ability <-replace(data$robot_ability, data$robot_ability_r == "A little right", 3)
@@ -417,6 +413,7 @@ data$puzzle_control <-replace(data$puzzle_control, data$puzzle_control_nr == "Re
 ```{r}
 #| label: Closed-ended-robot
 #| include: False
+
 df.1.ratings <- data %>%
   pivot_longer(cols = c(robot_structural, robot_ability, robot_interest, robot_control),
                names_to = "explanation",
@@ -443,7 +440,7 @@ summary(linear.abil)
 linear.inter <- lm(robot_interest ~ Condition, data = data)
 summary(linear.inter)
 
-# Create a results table
+# Create a result table
 lm_table <- data.frame(
   "Explanation" = c("Structural", "Ability", "Interest"),
   "Beta" = round(c(
@@ -480,6 +477,7 @@ print(lm_table)
 #| fig-width: 6  
 #| apa-note: "Bar graph displaying the mean rating of explanations provided by children across three experimental conditions: Baseline, Between, and Within. The y-axis represents the mean rating of each explanation type, while the x-axis represents the experimental condition. Error bars indicate standard errors."
 
+# Clustered Bar graph
 ggplot(df.1.ratings, aes(x = Condition, y = rating, group = explanation, fill = explanation)) +
   geom_bar(stat = "summary", position = "dodge", color = "black") +
   scale_fill_manual(values=c("#1F78B4","#FBB4AE","#fbaecf","snow3")) +
@@ -520,8 +518,6 @@ As illustrated in @fig-Bar-graph-robot, the Within condition showed a slight inc
 #| label: Close-ended-puzzle
 #| include: false
 
-#Puzzle-solving close-ended questions
-
 df.2.ratings <- data %>%
   pivot_longer(cols = c(puzzle_structural, puzzle_ability, puzzle_interest, puzzle_control),
                names_to = "explanation",
@@ -550,7 +546,7 @@ summary(linear.puzzle.abil)
 linear.puzzle.inter <- lm(puzzle_interest ~ Condition, data = data)
 summary(linear.puzzle.inter)
 
-# Create a results table
+# Create a result table
 lm_table2 <- data.frame(
   "Explanation" = c(
     "Structural", "Intrinsic-ability", "Intrinsic-interest"),
@@ -587,6 +583,7 @@ print(lm_table2)
 #| fig-width: 6  
 #| apa-note: "Bar graph displaying the mean rating of explanations provided by children across three experimental conditions: Baseline, Between, and Within. The y-axis represents the mean rating of each explanation type, while the x-axis represents the experimental condition. Error bars indicate standard errors."
 
+# Clustered Bar graph
 ggplot(df.2.ratings, aes(x = Condition, y = rating, group = explanation, fill = explanation)) +
     geom_bar(stat = "summary", position = "dodge", color = "black") +
     scale_fill_manual(values=c("#1F78B4","#FBB4AE","#fbaecf","snow3")) +
@@ -621,7 +618,6 @@ The linear regression analyses for the puzzle-solving closed-ended responses ind
 
 As illustrated in @fig-Bar-graph-puzzle, structural explanations slightly increase in the Within condition compared to the Baseline and Between conditions, while intrinsic-ability and intrinsic-interest explanations show a slight decrease in the Within condition compared to the Baseline and Between conditions. However, these differences were not statistically significant. The overall pattern of explanation types appears similar to the robot-building closed-ended responses.
 
-\newpage
 # Discussion
 
 For the robot-building scenario, the significant result of the chi-square test in the open-ended responses indicates that children’s open-ended explanations differed based on the condition. The increase in structural explanations in the Within condition suggests that exposure to structural information influenced children's reasoning, encouraging them to shift away from intrinsic explanations. In contrast, the puzzle-solving task did not show significant differences in open-ended responses across conditions, suggesting that children may not generalize structural reasoning from one domain to another. However, the finding that intrinsic-interest explanations showed a marginal effect in the Within condition for puzzle-solving suggests some potential for influence, even if the effect was not statistically significant.

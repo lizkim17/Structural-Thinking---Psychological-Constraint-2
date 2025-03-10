@@ -53,3 +53,7 @@ rsconnect/
 *.tex
 *.log
 *_files/
+
+# Ignore temporarily unnecessary files
+.DS_Store
+Structural Thinking - Psychological Constraint 2.Rproj

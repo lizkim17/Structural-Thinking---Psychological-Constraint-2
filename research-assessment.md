@@ -95,11 +95,11 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
     3.  Does not have duplicate/redundant elements
 
         -   [x] Objective attempt
-        -   [ ] Objective met
+        -   [x] Objective met
         -   Grader comments:
-            -   Repo/file/folder names should be informative and relevant to content, not class context (e.g., nrdowling/infant-gesture not nrdowling/d2m-project; infant-gestures.qmd not d2m-final.qmd).
-            -   Repo should not contain any files unrelated to the project (e.g, files from the example apaquarto manuscript)
-            -   Project files should be in the top level of the repository
+            -   ~~Repo/file/folder names should be informative and relevant to content, not class context (e.g., nrdowling/infant-gesture not nrdowling/d2m-project; infant-gestures.qmd not d2m-final.qmd).~~
+            -   ~~Repo should not contain any files unrelated to the project (e.g, files from the example apaquarto manuscript)~~
+            -   ~~Project files should be in the top level of the repository~~
 
 2.  Maintain an informative and up-to-date README.md
 
@@ -108,9 +108,9 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
     2.  Outlines the repo structure with file tree or similar
 
         -   [x] Objective attempt
-        -   [ ] Objective met
+        -   [x] Objective met
         -   Grader comments:
-            -   The content of your README is fine, but since you don't have it in the top level of your repo it isn't being processed as a README. You'll know its working correctly if you see it render on the github page beneath the files.
+            -   ~~The content of your README is fine, but since you don't have it in the top level of your repo it isn't being processed as a README. You'll know its working correctly if you see it render on the github page beneath the files.~~
 
 3.  integrate a GitHub repo with an R studio project, including .gitignore file
 
@@ -119,9 +119,9 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
     2.  .gitingore comprehensively excludes unnecessary, private, and very large files and are commented appropriately
 
         -   [x] Objective attempt
-        -   [ ] Objective met
+        -   [x] Objective met
         -   Grader comments:
-            -   .gitignore should include (minimally) a localonly folder and pdf render files (e.g., the \*\_files folder, .ttt, .tex., .log, etc.), as well as comments describing the ignored items (in addition to the default ignored items if you’re using a template)
+            -   .~~gitignore should include (minimally) a localonly folder and pdf render files (e.g., the \*\_files folder, .ttt, .tex., .log, etc.), as well as comments describing the ignored items (in addition to the default ignored items if you’re using a template)~~
 
 4.  effectively use version control
 
@@ -145,10 +145,10 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
     2.  Uses more than one function to install/load/require packages (including those used in commented code)
 
         -   [x] Objective attempt
-        -   [ ] Objective met
+        -   [x] Objective met
         -   Grader comments:
-            -   I see your pilot R script uses both install and load functions, but you need to include (commented out) installs in your .qmd since the .R file isn't run when you knit the document
-            -   Refer to the d2mr resources page for a list of the packages you can load without a commented out install line.
+            -   ~~I see your pilot R script uses both install and load functions, but you need to include (commented out) installs in your .qmd since the .R file isn't run when you knit the document~~
+            -   ~~Refer to the d2mr resources page for a list of the packages you can load without a commented out install line.~~
 
 6.  Use arithmetic, comparison, and logical operators
 
@@ -157,7 +157,7 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
     2.  Uses multiple operators in data transformation pipelines and/or inline R code
 
         -   [x] Objective attempt
-        -   [ ] Objective met
+        -   [x] Objective met
         -   Grader comments:
 
 7.  Parse and define functions and arguments
@@ -169,7 +169,7 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
     3.  Functions are well-documented with comments
 
         -   [x] Objective attempt
-        -   [ ] Objective met
+        -   [x] Objective met
         -   Grader comments:
 
 8.  Parse and write conditional statements and/or loops
@@ -179,7 +179,7 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
     2.  Uses multiple types of conditional/loop functions (e.g., `if_else()`, `case_when()`, `for`, `while`)
 
         -   [x] Objective attempt
-        -   [ ] Objective met
+        -   [x] Objective met
         -   Grader comments:
 
 9.  Use `readr` functions to read in and write out data
@@ -191,9 +191,9 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
     3.  Uses only relative paths that run without error when repo is cloned
 
         -   [x] Objective attempt
-        -   [ ] Objective met
+        -   [x] Objective met
         -   Grader comments:
-            -   Use readr functions not base/utils functions (specifically, use read_csv and write_csv)
+            -   ~~Use readr functions not base/utils functions (specifically, use read_csv and write_csv)~~
 
 10. Use `dplyr` and `tidyr` functions to transform data
 
@@ -275,11 +275,11 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
     4.  Uses at least 1 static aesthetic (e.g., color, shape, size) that improves visual clarity without mapping to data
 
         -   [x] Objective attempt
-        -   [ ] Objective met
-        -   Grader comments: Figures are looking really good! A few minor changes are needed to have them be publication-quality:
-            -   They should be smaller, no more than half the height of the page
-            -   Use fig-cap to add titles to all plots
-            -   Use apa-note to add captions to plots offering simple explanation of how to interpret them
+        -   [x] Objective met
+        -   Grader comments: Looking great!! Only thing -- don't forget that with fig-cap you don't need to also include a ggplot title. You've got both on your appendix figures. ~~Figures are looking really good! A few minor changes are needed to have them be publication-quality:~~
+            -   ~~They should be smaller, no more than half the height of the page~~
+            -   ~~Use fig-cap to add titles to all plots~~
+            -   ~~Use apa-note to add captions to plots offering simple explanation of how to interpret them~~
 
 ### Data analysis
 
@@ -293,7 +293,7 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
 
         -   [x] Objective attempt
         -   [x] Objective met
-        -   Grader comments: Don't print raw output!
+        -   Grader comments: ~~Don't print raw output!~~
 
 18. Perform simple hypothesis testing analyses for multiple data types
 
@@ -305,7 +305,7 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
 
         -   [x] Objective attempt
         -   [x] Objective met
-        -   Grader comments: Don't print raw output!
+        -   Grader comments: ~~Don't print raw output!~~
 
 19. Present and interpret statistics in manuscript narrative
 
@@ -318,11 +318,11 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
     4.  Uses dynamic inline R code to render data-dependent text
 
         -   [x] Objective attempt
-        -   [ ] Objective met
-        -   Grader comments:
-            -   use inline R code to report statistics
-            -   don't print raw output; save as object and/or render as table
-            -   round values per APA7 guidelines (2 decimals for most things; 3 for p-values)
+        -   [x] Objective met
+        -   Grader comments: lovely!
+            -   ~~use inline R code to report statistics~~
+            -   ~~don't print raw output; save as object and/or render as table~~
+            -   ~~round values per APA7 guidelines (2 decimals for most things; 3 for p-values)~~
 
 ### BibTeX
 
@@ -335,7 +335,7 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
     3.  May use `cite_r()` to cite R and R packages
 
         -   [x] Objective attempt
-        -   [ ] Objective met
+        -   [x] Objective met
         -   Grader comments:
 
 21. Render an APA7 references page from a .bib file
@@ -351,7 +351,7 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
     5.  May include references not cited in-text
 
         -   [x] Objective attempt
-        -   [ ] Objective met
+        -   [x] Objective met
         -   Grader comments:
 
 ### Notebooks and code chunks
@@ -367,10 +367,10 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
     4.  Chunks are distributed throughout the manuscript, sensibly placed near the text they support
 
         -   [x] Objective attempt
-        -   [ ] Objective met
+        -   [x] Objective met
         -   Grader comments:
-            -   Missing labels
-            -   When you add them, use Quarto comment-style chunk labels (e.g., #\| label: load-data) and options (#\| echo: FALSE).
+            -   ~~Missing labels~~
+            -   ~~When you add them, use Quarto comment-style chunk labels (e.g., #\| label: load-data) and options (#\| echo: FALSE).~~
 
 23. Use code chunks to set up a quarto document
 
@@ -384,7 +384,7 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
 
         -   [x] Objective attempt
         -   [x] Objective met
-        -   Grader comments:
+        -   Grader comments: Small suggestion -- include any/all setup chunks at the beginning of your document (immediately following YAML) rather than before the first "real" chunk
 
 24. Render publication-quality tables, figures, and images from code chunks
 
@@ -397,13 +397,13 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
     -   NOTE: Ideally your table(s) should be produced in APA7 style, but this is not a strict requirement. At a minimum, they should render as formatted tables (not raw output), have readable and correctly formatted text (e.g., column headers should be capitalized and in plain english, not literal variable names), and the table must be dynamically referenced in the text.
 
         -   [x] Objective attempt
-        -   [ ] Objective met
+        -   [x] Objective met
         -   Grader comments:
-            -   Add `fig-` label to all figures
-            -   Use fig-cap to add titles to all plots
-            -   Use apa-note to add captions to plots offering simple explanation of how to interpret them
-            -   Create a table (e.g., kbl, flextable, gt)
-            -   Reference all figures (with `@` crossreferencing) in text
+            -   ~~Add `fig-` label to all figures~~
+            -   ~~Use fig-cap to add titles to all plots~~
+            -   ~~Use apa-note to add captions to plots offering simple explanation of how to interpret them~~
+            -   ~~Create a table (e.g., kbl, flextable, gt)~~
+            -   ~~Reference all figures (with `@` crossreferencing) in text~~
 
 25. Execute descriptive and inferential analyses in code chunks
 
@@ -418,9 +418,9 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
     5.  Chunks are organized sensibly and appear near the text they support
 
         -   [x] Objective attempt
-        -   [ ] Objective met
+        -   [x] Objective met
         -   Grader comments:
-            -   results are displayed as raw output
+            -   ~~results are displayed as raw output~~
 
 ### R Markdown and Quarto
 
@@ -442,9 +442,9 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
     -   NOTE: This is going to be one of the most flexible objectives to demonstrate. You need to demonstrate a range of markdown skills and use them to make a readable, informative manuscript. Hitting the four points above should do that, but you can use your judgment about what kind of markdown features will best serve your project. No matter what, you should use markdown to follow APA7 guidelines.
 
         -   [x] Objective attempt
-        -   [ ] Objective met
+        -   [x] Objective met
         -   Grader comments:
-            -   I don't see any markdown styling or elements
+            -   ~~I don't see any markdown styling or elements~~
 
 28. Use inline R variables to replace static text
 
@@ -455,7 +455,7 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
     3.  Ideally, uses inline R references for *all* data-dependent text
 
         -   [x] Objective attempt
-        -   [ ] Objective met
+        -   [x] Objective met
         -   Grader comments:
 
 29. Run inline R functions to render dynamic data-dependent text
@@ -463,7 +463,7 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
     1.  Uses inline R functions to render at least 3 unique data-dependent text outputs (e.g., performs rounding, calculates means, subtracts one list length from another, etc. -- inline rather than in a code chunk)
 
         -   [x] Objective attempt
-        -   [ ] Objective met
+        -   [x] Objective met
         -   Grader comments:
 
 30. Use `knitr` and quarto to produce an APA7 formatted 1-click PDF manuscript
@@ -477,13 +477,13 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
     4.  No additional steps are needed (e.g., finding data, determining necessary packages to install and load, running unsourced scripts, correcting aboslute paths)
 
         -   [x] Objective attempt
-        -   [ ] Objective met
+        -   [x] Objective met
         -   Grader comments:
-            -   In APA7, level 1 headings are reserved for \# Abstract, \# Methods, \# Results, \# Discussion, \# References, and \# Appendix.
-            -   Analysis results are not presented in APA format
-            -   Does not include text of results or discussion
-            -   Does not render a references section or have a heading for it
-            -   Renders appendix without content
+            -   ~~In APA7, level 1 headings are reserved for \# Abstract, \# Methods, \# Results, \# Discussion, \# References, and \# Appendix.~~
+            -   ~~Analysis results are not presented in APA format~~
+            -   ~~Does not include text of results or discussion~~
+            -   ~~Does not render a references section or have a heading for it~~
+            -   ~~Renders appendix without content~~
 
 ## Reflection (Optional)
 
@@ -501,8 +501,12 @@ Lastly, there are two files, .DS_Store and Structural Thinking - Psychological C
 
 All final projects are graded by Dr. Dowling. You will see your grade on Canvas separated into two categories: objective points and engagement points.
 
--   **Objective points:** 11/30
--   **Engagement points:** 3/10
--   **Total points:** 14/40
+-   **Objective points:** 30/30
+-   **Engagement points:** 10/10
+-   **Total points:** 40/40
 
-**Comments:** Nice start, Liz! You've got a great foundation in place. Looking forward to reading your final draft! Be sure to reorganize your git repo before your next submission. Most importantly, your project should exist in the top level of the repo.
+**Comments:** 
+
+Final: Fantastic! You addressed absolutely every one of my comments and did a great job on everything you're attempting for the first time. This is excellent work. It's been such a pleasure having you in class this quarter, Liz! Like you note in your reflection, you've put in a really impressive amount of effort, and I think it's paid off. Oh and BTW re your confusion in the last paragraph: the second .Rproj file is usually something RStudio creates when something fundamental about the project changes (like the name or working directory). The .DS_Store file is a Mac meta-data thing. You should add it to your .gitignore file, but tbh I find it usually sneaks its way back in somehow, so don't worry much about it. 
+
+Nice start, Liz! You've got a great foundation in place. Looking forward to reading your final draft! Be sure to reorganize your git repo before your next submission. Most importantly, your project should exist in the top level of the repo.
